@@ -1,93 +1,171 @@
-*,
-*::before,
-*::after{
+/* === RESETS === */
+
+*,*::before,*::after{
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior:smooth;
+}
 body{
-  background-image: url(./assets/peakpx.jpg);
-  background-size: cover;
+  user-select: none;
   margin: 0;
-  padding: 0;
-  color: whitesmoke;
-  font-family: 'Poppins', sans-serif;
+  padding: 1.5em 1em;
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--white);
   line-height: 1.4;
+  color: var(--dark-gray);
 }
-h1,h2,p{
+
+ul, li , a{
+  user-select: none;
+  padding: 0;
   margin: 0;
+  text-decoration: none;
 }
-main{
-  padding: 2em;
-  display: flex;
-  gap: 1em;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+li{
+  list-style: none;
 }
+
+
 img{
   display: block;
-  width: 100%;
+  max-width: 100%;
 }
-.profile-container{
+
+
+/* === VARIABLES  === */
+
+:root{
+ --white: #ffffff;
+ --light-gray: #efeeee;
+ --dark-gray: #212529;
+ --middle-grey: #b9b9b9;
+}
+
+/* === FONTS SIZE/COLORS === */
+
+
+
+
+/* === BASE STYLES === */
+/* Header */
+.btn-container{
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.profile-img-container{
+.calendar-btn{
+  width: 3em;
+  height: 3em;
+  padding: 0.3em;
   border-radius: 50%;
-  border: 2px solid red;
-  width: 20%;
-  height: 65px;
+  border: 5px solid var(--light-gray);
+  background-color: var(--white);
+}
+.profile-img-div{
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
   overflow: hidden;
+  border: 5px solid var(--light-gray);
 }
-.welcome{
-  font-weight: 300;
-  font-size: 1rem;
-  margin: 0;
+
+.welcome-msg{
+  font-size: 1.6rem;
+
 }
-.name{
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-.search{
-  position: relative;
-  color: whitesmoke;
-  font-size: 1.05rem;
-  padding: 1em;
-  background-color: transparent;
-  border: 1px solid rgba(173, 216, 230, 0.756);
+
+/* Nav bar */
+.main-nav{
+  width: 90%;
+  bottom: 4%;
+  background-color: var(--dark-gray);
+  padding: 1.2em 1.8em;
   border-radius: 0.5em;
-  width: 100%;
+  position: fixed;
 }
-
-.category-title{
-  margin-bottom: 1em;
-}
-
-.category-container{
-  text-align: left;
-}
-i{
-  font-size: 1.5rem;
-}
-.categorys{
+.nav-bar-ul{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  overflow: visible;
-  gap: 1em;
- }
+  
+}
+.nav-li{
+  width: 1.5em;
+}
 
-.category{
-  width: ;
+/* Input field*/
+.search-container{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+}
+.search-bar{
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  background-color: var(--light-gray);
+  border: none;
+  padding: 1em 1em 1em 3em;
+  border-radius: 2em;
+  font-size: 1rem;
+}
+.search-btn{
+  width: 3em;
+  height: 3em;
+  padding: 0.5em;
+  position: absolute;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--light-gray);
+}
+
+/* Weekly calendar */ 
+.weekly-calendar{
+  margin-top: 1em;
+  padding: 0.5em 0;
+  border-top: 1px solid var(--light-gray);
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.weekly-calendar-day{
+  background-color: var(--light-gray);
+  padding: 0.5em;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.day-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
-  gap: 0.3em;
-  border-radius: 0.5em;
-  padding: 1em;
-  background-color: rgba(101, 34, 167, 0.881);
+  align-items: center;
+  gap: 0.5em;
 }
+
+.day-container > p {
+  margin: 0;
+}
+.day-name{
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.current-day{
+  background-color: salmon;
+  color: var(--white);
+}
+
+
+/* === MEDIA QUERIES === */
+
 
