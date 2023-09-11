@@ -79,7 +79,11 @@ img{
   font-size: 1.6rem;
 
 }
-
+.month-year{
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
 /* Nav bar */
 .main-nav{
   width: 90%;
@@ -129,6 +133,8 @@ img{
 
 /* Weekly calendar */ 
 .weekly-calendar{
+  width: 100%;
+  overflow: scroll;
   margin-top: 1em;
   padding: 0.5em 0;
   border-top: 1px solid var(--light-gray);
@@ -139,18 +145,21 @@ img{
   align-items: center;
 }
 .weekly-calendar-day{
+  text-align: center;
   background-color: var(--light-gray);
   padding: 0.5em;
   border-radius: 50%;
   font-weight: 700;
   font-size: 1.1rem;
+  width: 2.3em;
 }
 .day-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.2em;
+  margin-right: 1em;
 }
 
 .day-container > p {
@@ -193,12 +202,6 @@ img{
   border-left: 1px solid var(--middle-grey);
 }
 
-.subject-li::before{
-  content: " ";
-  width: 5px;
-  height: 5px;
-  background-color: var(--dark-gray);
-}
 
 
 /* === MEDIA QUERIES === */
