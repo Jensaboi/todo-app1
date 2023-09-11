@@ -8,6 +8,7 @@ const currDate = date.getDate()
 const day = date.getDay()
 
 //console.log(day)
+//console.log(currDate)
 
 const weeklyCalendarEl = document.getElementById("weekly-calendar")
 const monthYear = document.getElementById("month-year")
@@ -16,18 +17,21 @@ const monthYear = document.getElementById("month-year")
 for(let i = 0; i < day; i++){
   
   const weeklyDayEl = document.createElement('div')
-  let weekDay = currDate - day + i
+  let weekDay = currDate + i -1
   weeklyDayEl.className = "day-container"
-  console.log(weekDay)
-  //console.log(i)
+  console.log(i)
   weeklyDayEl.innerHTML = `<p class="day-name">${days[i]}</p> <p class="weekly-calendar-day">${weekDay}</p>`
+  if(weekDay == currDate){
+    const currentWeekDay = weeklyDayEl.querySelector('.weekly-calendar-day')
+    currentWeekDay.classList.add('current-day')
+   }
   document.querySelector('#weekly-calendar').appendChild(weeklyDayEl);
 }
 //loopar ut current day + dagarna efter
-for(let i = day; i < days.length; i++){
+for(let i = day ; i < days.length; i++){
     console.log(i)
     const weeklyDayEl = document.createElement('div')
-    let weekDay = currDate + i
+    let weekDay = currDate + i -1
     weeklyDayEl.className = "day-container"
     weeklyDayEl.innerHTML = `<p class="day-name">${days[i]}</p> <p class="weekly-calendar-day">${weekDay}</p>`
 

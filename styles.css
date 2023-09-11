@@ -51,6 +51,7 @@ img{
 
 
 /* === BASE STYLES === */
+
 /* Header */
 .btn-container{
   display: flex;
@@ -82,7 +83,7 @@ img{
 /* Nav bar */
 .main-nav{
   width: 90%;
-  bottom: 4%;
+  bottom: 2%;
   background-color: var(--dark-gray);
   padding: 1.2em 1.8em;
   border-radius: 0.5em;
@@ -163,6 +164,40 @@ img{
 .current-day{
   background-color: salmon;
   color: var(--white);
+}
+
+.daily-tasks-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 3em;
+}
+
+.time-ol{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 1em;
+}
+
+.subject-ol{
+  padding-left: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 1em;
+
+  border-left: 1px solid var(--middle-grey);
+}
+
+.subject-li::before{
+  content: " ";
+  width: 5px;
+  height: 5px;
+  background-color: var(--dark-gray);
 }
 
 
