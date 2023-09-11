@@ -1,5 +1,5 @@
 let weeklyCalendarNav = 0;
-
+const weekDays = ["sun", "mån", "tis", "ons", "tor", "fre", "lör"]
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
 const weeklyCalendarEl = document.getElementById("weekly-calendar")
@@ -13,7 +13,7 @@ function renderWeeklyCalendar(){
   const day = dateObj.getDay()
   const year = dateObj.getFullYear()
   const month = dateObj.getMonth()
-
+  
   //gets first day in month
   const firstDayInMonth = new Date(year,month,1)
   //console.log(firstDayInMonth)
@@ -62,43 +62,4 @@ function renderWeeklyCalendar(){
 }
 
 
-//renderWeeklyCalendar()
-function nyFunc(){
-  const dateObj = new Date()
-  
-  const date = dateObj.getDate()
-  const day = dateObj.getDay()
-  const year = dateObj.getFullYear()
-  const month = dateObj.getMonth()
-
-  const getWeekDayName = (days) =>{
-    let day = new Date(Date.UTC(year,month, days))
-    const weekDay = {weekday: 'short'}
-    return new Intl.DateTimeFormat('cet', weekDay).format(day)
-  }
-//loopar ut dagarna innan current day
- for(let i = 0; i < day; i++){
-  
-  const weeklydayel = document.createelement('div')
-   weeklydayel.classname = "day-container"
-   weeklydayel.innerhtml = 
-   `<p class="day-name">${days[i]}</p>
-    <p class="weekly-calendar-day">${getWeekDayName(i)}</p>`
- 
- document.queryselector('#weekly-calendar').appendchild(weeklydayel);
- }
- //loopar ut current day + dagarna efter
-for(let i = day ; i < days.length; i++){
-   const weeklydayel = document.createelement('div')
-  let weekday = currdate + i -1
-   weeklydayel.classname = "day-container"
-   weeklydayel.innerhtml = `<p class="day-name">${days[i]}</p> <p class="weekly-calendar-day">${getWeekDayName(i)}</p>`
-   //setting current day
-  if(weekday == currdate){
-      const currentweekday = weeklydayel.queryselector('.weekly-calendar-day')
-      currentweekday.classlist.add('current-day')
-    }
-    document.queryselector('#weekly-calendar').appendchild(weeklydayel);
- }
-}
-nyFunc()
+renderWeeklyCalendar()
