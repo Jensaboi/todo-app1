@@ -9,7 +9,7 @@ const day = date.getDay()
 
 //console.log(day)
 //console.log(currDate)
-
+// fungerar atm
 const weeklyCalendarEl = document.getElementById("weekly-calendar")
 const monthYear = document.getElementById("month-year")
 
