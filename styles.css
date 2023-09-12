@@ -43,6 +43,7 @@ img{
  --light-gray: #efeeee;
  --dark-gray: #212529;
  --middle-grey: #b9b9b9;
+ --salmon: #fa8072;
 }
 
 /* === FONTS SIZE/COLORS === */
@@ -132,13 +133,29 @@ img{
 }
 
 /* Weekly calendar */ 
-.weekly-calendar{
-  width: 100%;
-  overflow: scroll;
+.weekly-calendar-container{
   margin-top: 1em;
-  padding: 0.5em 0;
   border-top: 1px solid var(--light-gray);
   border-bottom: 1px solid var(--light-gray);
+}
+.weekly-calendar-buttons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.weekly-btn{
+  border-radius: 0.5em;
+  border: 1px solid var(--light-gray);
+  background-color: var(--salmon);
+  padding: 0.7em 1.5em;
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.weekly-calendar{
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5em 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -166,12 +183,12 @@ img{
   margin: 0;
 }
 .day-name{
-  font-size: .85rem;
-  font-weight: 600;
+  font-size: .8rem;
+  font-weight: 300;
 }
 
 .current-day{
-  background-color: salmon;
+  background-color: var(--salmon);
   color: var(--white);
 }
 
