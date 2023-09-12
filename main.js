@@ -12,14 +12,16 @@ function renderWeeklyCalendar(){
   const currentWeekDayName = dateObj.getDay()
   const currentYear = dateObj.getFullYear()
   const currentMonth = dateObj.getMonth()
-  
+  console.log(currentMonth+1)
   //gets first day in month
   const firstDayInMonth = new Date(currentYear,currentMonth,1)
-  //console.log(firstDayInMonth)
   
   //Gets last day in current month
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
-  
+ 
+  //Gets last day in previous month
+  const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate()
+  console.log(daysInPrevMonth)
   //gets monday date of current week
   const mondayDate = currentDate - currentWeekDayName + 1
   
@@ -32,15 +34,16 @@ function renderWeeklyCalendar(){
   
   for(let i = 0; i < 7; i++){
     if(mondayDate + i > daysInMonth){
+      let j = 1;
       const weeklyDayEl = document.createElement('div')
       weeklyDayEl.addEventListener("click",() =>{
       console.log("clicked", mondayDate + i )
     })
     weeklyDayEl.className = "day-container"
     weeklyDayEl.innerHTML = 
-    `<p>${getWeekDayName(i,i,i)}</p>
-    <p class="weekly-calendar-day">${i}</p>`
-
+    `<p>${getWeekDayName(currentYear,currentMonth + 1,j)}</p>
+    <p class="weekly-calendar-day">${j}</p>`
+    j++;
     document.querySelector('#weekly-calendar').appendChild(weeklyDayEl);
     }else{
       const weeklyDayEl = document.createElement('div')
