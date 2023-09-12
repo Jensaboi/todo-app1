@@ -57,7 +57,7 @@ function renderWeeklyCalendar(){
 }
 
  //Gets weekday name
- const getWeekDayName = (year,month,days, format) =>{
+ const getWeekDayName = (year,month,days) =>{
   let day = new Date(Date.UTC(year,month,days))
   const weekDay = {weekday: 'short'}
   return new Intl.DateTimeFormat('en-Us', weekDay).format(day)
