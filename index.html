@@ -40,7 +40,7 @@
         </li>
 
         <li class="nav-li">
-          <button class="open-add-event-modal" id="open-add-event-modal"><img src="./assets/icons/plus-sign.svg" alt=""></button>
+          <button class="open-add-event-modal" id="open-event-modal-btn"><img src="./assets/icons/plus-sign.svg" alt=""></button>
         </li>
 
         <li class="nav-li">
@@ -60,20 +60,20 @@
     <div id="add-event-modal" class="add-event-modal">
       
       <div class="add-modal-content">
-          <button id="close-modal-btn" class="close-modal-btn">&#x2715;</button>
+          <button id="close-event-modal-btn" class="close-modal-btn">&#x2715;</button>
           <div>
             <h3 class="modal-text">Event</h3>
-            <input class="modal-input" id="event-title" type="text">
+            <input class="modal-input" id="event-input" type="text">
           </div>
 
           <div>
             <h3 class="modal-text">Date:</h3>
-            <input type="date">
+            <input type="date" id="date-input">
           </div>
 
           <div>
             <h3 class="modal-text">Note:</h3>
-            <textarea class="add-textarea"></textarea>
+            <textarea class="add-textarea" id="note-textarea"></textarea>
           </div>
           <button id="save-event-btn" class="save-btn">Add event</button>
         </div>

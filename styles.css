@@ -49,7 +49,7 @@ img{
  --salmon: #f55e4d;
  --selected: #fa7e7030;
  --green: #35b849;
- --selceted-green: #35b84954;
+ --selceted-green: #35b84947;
 }
 
 /* === FONTS SIZE/COLORS === */
@@ -290,10 +290,11 @@ img{
 
 .current-day{
   color: var(--salmon);
+  background-color: var(--selected);
 }
 
 .selected-day{
-  background-color: var(--selected) ;
+  background-color: var(--selceted-green);
 }
 
 /* DAILY TASKS */

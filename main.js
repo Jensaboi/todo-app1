@@ -10,8 +10,8 @@ const weeklyNextBtnEle = document.getElementById("weekly-next-btn")
 
 //add event modal
 const saveEventBtn = document.getElementById("save-event-btn")
-const closeAddEventModal = document.getElementById("close-modal-btn")
-const openAddEventModal = document.getElementById("open-add-event-modal")
+const closeAddEventModalBtn = document.getElementById("close-event-modal-btn")
+const openAddEventModalBtn = document.getElementById("open-event-modal-btn")
 
 const monthYear = document.getElementById("month-year")
 const monthYearDay = document.getElementById("month-day-year")
@@ -19,6 +19,10 @@ const displayMonth = document.getElementById("display-month")
 
 const dailyTasks = document.getElementById("daily-tasks-container")
 
+const getYear = new Date().getFullYear()
+const getMonth = new Date().getMonth()
+
+monthYear.textContent = `${months[new Date().getMonth()]} ${new Date().getFullYear()}`
 function renderWeeklyCalendar(){
   const dateObj = new Date()
   
@@ -32,28 +36,37 @@ function renderWeeklyCalendar(){
   const currentMonth = dateObj.getMonth()
  
   //gets monday date of current week
-  //              date  day  +1 för måndag
-  const mondayDate = currentDate - currentWeekDayName + 1
+  const mondayDate = currentDate - currentWeekDayName + 1 // +1 för måndag
 
+ 
   weeklyCalendar.innerHTML = ''
   for(let i = 0; i < 7; i++){
     const weeklyDayEl = document.createElement('div')
     weeklyDayEl.className = "day-container"
+    weeklyDayEl.dataset.date = new Date(currentYear, currentMonth, mondayDate + i);
     weeklyDayEl.innerHTML = 
-    `<p>${getWeekDayName(currentYear,currentMonth,mondayDate + i)}</p>
-    <p class="weekly-calendar-day">${getDateNumber(currentYear,currentMonth,mondayDate + i)}</p>`
+    `<p>
+      ${getWeekDayName(currentYear,currentMonth,mondayDate + i)}
+    </p>
+
+    <p class="weekly-calendar-day">
+      ${getDateNumber(currentYear,currentMonth,mondayDate + i)}
+    </p>`
     
-    weeklyDayEl.addEventListener("click",() =>{
+    weeklyDayEl.addEventListener("click",() =>{    
       renderSelectedDay(new Date(currentYear, currentMonth, mondayDate + i))
-      // selectedDay = new Date(currentYear, currentMonth, mondayDate + i)
-      // console.log(selectedDay)
+
+      document.querySelectorAll('.weekly-calendar-day').forEach(element => {
+        element.classList.remove('selected-day');
+    });
+    
+    weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('selected-day')  
     })
 
     if(mondayDate + i === new Date().getDate()){
-      const currentWeekDay = weeklyDayEl.querySelector('.weekly-calendar-day')
-      currentWeekDay.classList.add('current-day')
-      currentWeekDay.classList.add('selected-day')
+      weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('current-day')  
     }
+
     document.querySelector('#weekly-calendar').appendChild(weeklyDayEl);
     
   }
@@ -66,7 +79,6 @@ function renderWeeklyCalendar(){
   })}`
 
   displayMonth.innerHTML = `${months[currentMonth]}`
-  monthYear.innerHTML = `${months[currentMonth]} ${currentYear}`
 }
 
  //Gets weekday name
@@ -84,7 +96,7 @@ const getDateNumber = (year,month,days) =>{
 }
 
 
-function initializingButtons(){
+function initializingButtons () {
 
   weeklyBackBtnEle.addEventListener('click',() => {
     weeklyCalendarNav -= 7;
@@ -96,21 +108,26 @@ function initializingButtons(){
     renderWeeklyCalendar()
   })
 
-  openAddEventModal.addEventListener('click', () => {
+  openAddEventModalBtn.addEventListener('click', () => {
     document.getElementById("add-event-modal").style.display = "block"
   })
 
-  closeAddEventModal.addEventListener('click', () => {
-    document.getElementById("add-event-modal").style.display = "none"
-  })
+  closeAddEventModalBtn.addEventListener('click', closeAddEventModal)
   
 }
 
+function closeAddEventModal(){
+  document.getElementById("add-event-modal").style.display = "none"
+}
 
-function renderSelectedDay(date){
+
+function setSelectedDay() {
+
+}
+
+function renderSelectedDay(date) {
   selectedDay = date
   console.log(selectedDay)
-
 }
 
 
