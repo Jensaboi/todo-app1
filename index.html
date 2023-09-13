@@ -28,8 +28,8 @@
 
     </div>
 
-    <h1 class="welcome-msg"> Hi <span id="name" class="name">Jens</span>,<br>
-        you have <span>0</span> tasks!
+    <h1 class="welcome-msg"> Hi <span id="name" class="name">Name</span>,<br>
+        track your habbits and tasks!
     </h1>
 
     <nav class="main-nav">
@@ -40,7 +40,7 @@
         </li>
 
         <li class="nav-li">
-          <a href=""><img src="./assets/icons/plus-sign.svg" alt=""></a>
+          <button class="open-add-event-modal" id="open-add-event-modal"><img src="./assets/icons/plus-sign.svg" alt=""></button>
         </li>
 
         <li class="nav-li">
@@ -56,6 +56,28 @@
 
   </header>
   <main>
+
+    <div id="add-event-modal" class="add-event-modal">
+      
+      <div class="add-modal-content">
+          <button id="close-modal-btn" class="close-modal-btn">&#x2715;</button>
+          <div>
+            <h3 class="modal-text">Event</h3>
+            <input class="modal-input" id="event-title" type="text">
+          </div>
+
+          <div>
+            <h3 class="modal-text">Date:</h3>
+            <input type="date">
+          </div>
+
+          <div>
+            <h3 class="modal-text">Note:</h3>
+            <textarea class="add-textarea"></textarea>
+          </div>
+          <button id="save-event-btn" class="save-btn">Add event</button>
+        </div>
+    </div>
 
     <div class="search-container">
 
@@ -83,20 +105,14 @@
     
     <div >
       <h2 id="month-day-year"></h2>
-      <div class="daily-tasks-container">
+      <div id="daily-tasks-container" class="daily-tasks-container">
 
         <ol class="time-ol">
-          <li class="time-li">08:30</li>
-          <li class="time-li">10:30</li>
-          <li class="time-li">12:45</li>
-          <li class="time-li">19:20</li>
+
         </ol>
 
         <ol class="subject-ol">
-          <li class="subject-li">Plugga</li>
-          <li class="subject-li">Jobba</li>
-          <li class="subject-li">Lunch</li>
-          <li class="subject-li">Träna</li>
+
         </ol>
       </div>
     </div>
