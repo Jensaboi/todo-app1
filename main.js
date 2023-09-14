@@ -1,6 +1,6 @@
 let weeklyCalendarNav = 0;
 let selectedDay = null;
-let todoList = []
+let events = []
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
 //weekly calendar
@@ -16,16 +16,22 @@ const openAddEventModalBtn = document.getElementById("open-event-modal-btn")
 const eventInput = document.getElementById("event-input")
 const dateInput = document.getElementById("date-input")
 
-const monthYear = document.getElementById("month-year")
+
+//show day
+const eventListEl = document.getElementById("event-list")
+
+const displayCurrentMonthYear = document.getElementById("display-current-mont-year")
 const displaySelectedDay = document.getElementById("display-selected-day")
 const displayMonth = document.getElementById("display-month")
 
+displayCurrentMonthYear.textContent = `${new Date().toLocaleDateString('en-Us',{
+  year: 'numeric',
+  month: 'long',
+})}`
+
+//
 const dailyTasks = document.getElementById("daily-tasks-container")
 
-const getYear = new Date().getFullYear()
-const getMonth = new Date().getMonth()
-
-monthYear.textContent = `${months[new Date().getMonth()]} ${new Date().getFullYear()}`
 
 
 function renderWeeklyCalendar(){
@@ -70,21 +76,14 @@ function renderWeeklyCalendar(){
 
     })
 
-    if(mondayDate + i === new Date().getDate()){
-      weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('current-day')  
+    if(mondayDate + i === currentDate && weeklyCalendarNav === 0){
+      weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('current-day')
+      
     }
 
     document.querySelector('#weekly-calendar').appendChild(weeklyDayEl);
     
   }
-
-  const aliba = dateObj.toLocaleDateString('en-Us',{
-    weekday: 'long',
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric'
-  })
-  displaySelectedDay.innerHTML = `${aliba}`
 
   displayMonth.innerHTML = `${months[currentMonth]}`
 }
@@ -119,22 +118,47 @@ function initializingButtons () {
   openAddEventModalBtn.addEventListener('click', openAddEventModal)
 
   closeAddEventModalBtn.addEventListener('click', closeAddEventModal)
+
+  saveEventBtn.addEventListener('click', saveEventToLocalStorage)
   
 }
+
+
 function openAddEventModal(){
   modalsOverlayBg.style.display = "block"
   eventInput.value = ''
-  
+  console.log(selectedDay)
 }
 
 function closeAddEventModal(){
   modalsOverlayBg.style.display = "none"
   eventInput.value = ''
+  dateInput.value = ''
 }
 
 function renderSelectedDay(date) {
+  
   selectedDay = date
-  console.log(selectedDay)
+  
+}
+
+function saveEventToLocalStorage(){
+if(dateInput.value == '' || eventInput.value == ''){
+  console.log("nothing happens")
+}
+else {
+  events.push({
+    date: dateInput.value,
+    event: eventInput.value
+  })
+
+  localStorage.setItem("events", JSON.stringify(events))
+  console.log(events)
+  renderSelectedDay(dateInput.value)
+  closeAddEventModal()
+
+}
+
 }
 
 
