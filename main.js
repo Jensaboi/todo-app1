@@ -8,13 +8,16 @@ const weeklyCalendar = document.getElementById("weekly-calendar")
 const weeklyBackBtnEle = document.getElementById("weekly-back-btn")
 const weeklyNextBtnEle = document.getElementById("weekly-next-btn")
 
-//add event modal
+//Modals
+const modalsOverlayBg = document.getElementById("modals-overlay-bg")
 const saveEventBtn = document.getElementById("save-event-btn")
 const closeAddEventModalBtn = document.getElementById("close-event-modal-btn")
 const openAddEventModalBtn = document.getElementById("open-event-modal-btn")
+const eventInput = document.getElementById("event-input")
+const dateInput = document.getElementById("date-input")
 
 const monthYear = document.getElementById("month-year")
-const monthYearDay = document.getElementById("month-day-year")
+const displaySelectedDay = document.getElementById("display-selected-day")
 const displayMonth = document.getElementById("display-month")
 
 const dailyTasks = document.getElementById("daily-tasks-container")
@@ -23,6 +26,8 @@ const getYear = new Date().getFullYear()
 const getMonth = new Date().getMonth()
 
 monthYear.textContent = `${months[new Date().getMonth()]} ${new Date().getFullYear()}`
+
+
 function renderWeeklyCalendar(){
   const dateObj = new Date()
   
@@ -53,14 +58,16 @@ function renderWeeklyCalendar(){
       ${getDateNumber(currentYear,currentMonth,mondayDate + i)}
     </p>`
     
-    weeklyDayEl.addEventListener("click",() =>{    
+    weeklyDayEl.addEventListener("click", () => {    
+      
       renderSelectedDay(new Date(currentYear, currentMonth, mondayDate + i))
 
       document.querySelectorAll('.weekly-calendar-day').forEach(element => {
         element.classList.remove('selected-day');
     });
     
-    weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('selected-day')  
+    weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('selected-day') 
+
     })
 
     if(mondayDate + i === new Date().getDate()){
@@ -71,12 +78,13 @@ function renderWeeklyCalendar(){
     
   }
 
-  monthYearDay.innerHTML = `${dateObj.toLocaleDateString('en-Us',{
-    weekday: 'short',
-    day: 'numeric',
-    month: 'short',
-    year: '2-digit'
-  })}`
+  const aliba = dateObj.toLocaleDateString('en-Us',{
+    weekday: 'long',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric'
+  })
+  displaySelectedDay.innerHTML = `${aliba}`
 
   displayMonth.innerHTML = `${months[currentMonth]}`
 }
@@ -108,21 +116,20 @@ function initializingButtons () {
     renderWeeklyCalendar()
   })
 
-  openAddEventModalBtn.addEventListener('click', () => {
-    document.getElementById("add-event-modal").style.display = "block"
-  })
+  openAddEventModalBtn.addEventListener('click', openAddEventModal)
 
   closeAddEventModalBtn.addEventListener('click', closeAddEventModal)
   
 }
-
-function closeAddEventModal(){
-  document.getElementById("add-event-modal").style.display = "none"
+function openAddEventModal(){
+  modalsOverlayBg.style.display = "block"
+  eventInput.value = ''
+  
 }
 
-
-function setSelectedDay() {
-
+function closeAddEventModal(){
+  modalsOverlayBg.style.display = "none"
+  eventInput.value = ''
 }
 
 function renderSelectedDay(date) {
