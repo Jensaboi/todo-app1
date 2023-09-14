@@ -46,10 +46,11 @@ img{
  --light-gray: #efeeee;
  --dark-gray: #212529;
  --middle-grey: #b9b9b9;
- --salmon: #f55e4d;
+ --salmon: salmon;
+ --current-day: #e04130;
  --selected: #fa7e7030;
  --green: #35b849;
- --selceted-green: #35b84947;
+ --selceted-green: #35b84938;
 }
 
 /* === FONTS SIZE/COLORS === */
@@ -289,12 +290,11 @@ img{
 }
 
 .current-day{
-  color: var(--salmon);
-  background-color: var(--selected);
+  color: var(--current-day);
 }
 
 .selected-day{
-  background-color: var(--selceted-green);
+  background-color: var(--selected);
 }
 
 /* DAILY TASKS */
@@ -314,7 +314,7 @@ img{
   gap: 1em;
 }
 
-.subject-ol{
+.event-ol{
   padding-left: 3em;
   display: flex;
   flex-direction: column;

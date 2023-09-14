@@ -1,7 +1,10 @@
 let weeklyCalendarNav = 0;
 let selectedDay = null;
-let events = []
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+const eventsFromLocalStorage = JSON.parse(localStorage.getItem("events"))
+let events = (eventsFromLocalStorage) ? eventsFromLocalStorage : [];
+
 
 //weekly calendar
 const weeklyCalendar = document.getElementById("weekly-calendar")
@@ -17,11 +20,8 @@ const eventInput = document.getElementById("event-input")
 const dateInput = document.getElementById("date-input")
 
 
-//show day
-const eventListEl = document.getElementById("event-list")
-
+//displays
 const displayCurrentMonthYear = document.getElementById("display-current-mont-year")
-const displaySelectedDay = document.getElementById("display-selected-day")
 const displayMonth = document.getElementById("display-month")
 
 displayCurrentMonthYear.textContent = `${new Date().toLocaleDateString('en-Us',{
@@ -29,7 +29,9 @@ displayCurrentMonthYear.textContent = `${new Date().toLocaleDateString('en-Us',{
   month: 'long',
 })}`
 
-//
+
+const displaySelectedDay = document.getElementById("display-selected-day")
+const eventListEl = document.getElementById("event-list")
 const dailyTasks = document.getElementById("daily-tasks-container")
 
 
@@ -49,7 +51,7 @@ function renderWeeklyCalendar(){
   //gets monday date of current week
   const mondayDate = currentDate - currentWeekDayName + 1 // +1 för måndag
 
- 
+  
   weeklyCalendar.innerHTML = ''
   for(let i = 0; i < 7; i++){
     const weeklyDayEl = document.createElement('div')
@@ -78,7 +80,7 @@ function renderWeeklyCalendar(){
 
     if(mondayDate + i === currentDate && weeklyCalendarNav === 0){
       weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('current-day')
-      
+      weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('selected-day') 
     }
 
     document.querySelector('#weekly-calendar').appendChild(weeklyDayEl);
@@ -88,8 +90,8 @@ function renderWeeklyCalendar(){
   displayMonth.innerHTML = `${months[currentMonth]}`
 }
 
- //Gets weekday name
- const getWeekDayName = (year,month,days) =>{
+//Gets weekday name
+const getWeekDayName = (year,month,days) =>{
   let day = new Date(Date.UTC(year,month,days))
   const weekDay = {weekday: 'short'}
   return new Intl.DateTimeFormat('en-Us', weekDay).format(day)
@@ -126,21 +128,30 @@ function initializingButtons () {
 
 function openAddEventModal(){
   modalsOverlayBg.style.display = "block"
-  eventInput.value = ''
-  console.log(selectedDay)
+  dateInput.value = selectedDay.toLocaleDateString()
 }
 
 function closeAddEventModal(){
-  modalsOverlayBg.style.display = "none"
   eventInput.value = ''
   dateInput.value = ''
+  modalsOverlayBg.style.display = "none"
 }
 
-function renderSelectedDay(date) {
+ function renderSelectedDay(date) {
   
   selectedDay = date
+   let selectedDayString = selectedDay.toLocaleDateString()
+   console.log(selectedDay)
+   console.log(selectedDayString)
+   displaySelectedDay.innerHTML = selectedDayString
   
-}
+
+   const eventThisDay = events.find(e => e.date === selectedDayString)
+
+  if(eventThisDay){
+     console.log(eventThisDay)
+  }
+ }
 
 function saveEventToLocalStorage(){
 if(dateInput.value == '' || eventInput.value == ''){
@@ -153,14 +164,15 @@ else {
   })
 
   localStorage.setItem("events", JSON.stringify(events))
-  console.log(events)
-  renderSelectedDay(dateInput.value)
+  
+  renderSelectedDay(selectedDay)
   closeAddEventModal()
-
 }
 
 }
 
 
+renderSelectedDay(new Date())
 initializingButtons()
 renderWeeklyCalendar()
+
