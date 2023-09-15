@@ -29,9 +29,8 @@ displayCurrentMonthYear.textContent = `${new Date().toLocaleDateString('en-Us',{
   month: 'long',
 })}`
 
-
+const eventListItem = document.createElement('li')
 const displaySelectedDay = document.getElementById("display-selected-day")
-const eventListEl = document.getElementById("event-list")
 const dailyTasks = document.getElementById("daily-tasks-container")
 
 
@@ -140,17 +139,23 @@ function closeAddEventModal(){
  function renderSelectedDay(date) {
   
   selectedDay = date
-   let selectedDayString = selectedDay.toLocaleDateString()
-   console.log(selectedDay)
-   console.log(selectedDayString)
-   displaySelectedDay.innerHTML = selectedDayString
-  
-
-   const eventThisDay = events.find(e => e.date === selectedDayString)
+  let selectedDayString = selectedDay.toLocaleDateString()
+  displaySelectedDay.innerHTML = selectedDayString
+    
+  const eventThisDay = events.find(e => e.date === selectedDayString)
+    
+  eventListItem.textContent = ''
 
   if(eventThisDay){
+    
+    eventListItem.className = 'event-ol'
+
+    eventListItem.textContent = eventThisDay.event
+
      console.log(eventThisDay)
+     document.querySelector('#event-list').appendChild(eventListItem)
   }
+  
  }
 
 function saveEventToLocalStorage(){

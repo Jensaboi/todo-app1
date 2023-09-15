@@ -25,10 +25,6 @@ ul, li , a{
   text-decoration: none;
 }
 
-li{
-  list-style: none;
-}
-
 input{
   display: block;
 }
@@ -315,14 +311,13 @@ img{
 }
 
 .event-ol{
+  list-style-type: circle;
   padding-left: 3em;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: start;
   gap: 1em;
-
-  border-left: 1px solid var(--middle-grey);
 }
 
 
