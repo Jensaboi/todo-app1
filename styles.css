@@ -16,6 +16,8 @@ body{
   background-color: var(--white);
   line-height: 1.4;
   color: var(--dark-gray);
+  min-width: 500px;
+  min-height: 800px;
 }
 
 ul, li , a{
@@ -345,10 +347,4 @@ img{
   gap: 1em;
 }
 
-event-list
-
-
-
 /* === MEDIA QUERIES === */
-
-
