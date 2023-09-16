@@ -49,6 +49,7 @@ img{
  --selected: #fa7e7030;
  --green: #35b849;
  --selceted-green: #35b84938;
+ --lightblue:rgba(173, 216, 230, 0.288);
 }
 
 /* === FONTS SIZE/COLORS === */
@@ -322,38 +323,30 @@ img{
 }
 
 /* DAILY TASKS */
-.daily-tasks-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  gap: 3em;
+.display-selected-day{
+  margin: 0;
+  font-size: 1.2rem;
 }
-
-.time-list{
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  gap: 1em;
+.tasks-on-day{
+  font-weight: 800;
 }
-
 .event-list{
   color: var(--dark-gray);
-  list-style: disc;
-  padding-left: 3em;
+  list-style: none;
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: start;
-  gap: 1em;
+  align-items: stretch;
+  gap: 0.5em;
 
 }
 
 .event-li{
+  background-color: var(--lightblue);
   font-size: 1.2rem;
   font-weight: 600;
-  padding-left: 0.5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
 }
 .note-paragraph{
   margin-top: 0.2em;

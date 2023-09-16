@@ -143,7 +143,7 @@ function closeAddEventModal(){
   selectedDay = date
   const selectedDayString = selectedDay.toLocaleDateString()
 
-  displaySelectedDay.innerHTML = selectedDayString
+  displaySelectedDay.innerHTML = `${selectedDayString}`
   eventList.innerHTML = ''
   
   //Loop through the array of objects
@@ -162,7 +162,7 @@ function closeAddEventModal(){
         if (event.note) {
           const noteParagraph = document.createElement('p');
           noteParagraph.className = 'note-paragraph'
-          noteParagraph.textContent = `- ${event.note}`;
+          noteParagraph.textContent = ` - ${event.note}`;
           
           eventListItem.appendChild(noteParagraph);
         }
