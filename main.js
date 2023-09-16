@@ -18,8 +18,6 @@ const openAddEventModalBtn = document.getElementById("open-event-modal-btn")
 const eventInput = document.getElementById("event-input")
 const dateInput = document.getElementById("date-input")
 const noteTextArea = document.getElementById("note-textarea")
-const timeFromInput = document.getElementById("timeFrom-input")
-const timeToInput = document.getElementById("timeTo-input")
 
 
 //displays
@@ -147,18 +145,28 @@ function closeAddEventModal(){
 
   displaySelectedDay.innerHTML = selectedDayString
   eventList.innerHTML = ''
+  
+  //Loop through the array of objects
   for (const obj of events) {
     // Check if the current object's date matches the specific date
-    if (obj.date === selectedDayString) {
+    if (obj.date === selectedDayString) {  
       // Loop through the eventsOnDate array for the current date
       for (const event of obj.eventsOnDate) {
         // Log each event's name
-        //console.log(event.event);
-
 
         const eventListItem = document.createElement('li')
         eventListItem.className = 'event-li'
-        eventListItem.textContent = event.event
+        eventListItem.innerHTML = event.event 
+
+        // Check if there's a note and add it to the list item
+        if (event.note) {
+          const noteParagraph = document.createElement('p');
+          noteParagraph.className = 'note-paragraph'
+          noteParagraph.textContent = `- ${event.note}`;
+          
+          eventListItem.appendChild(noteParagraph);
+        }
+
         document.querySelector('#event-list').appendChild(eventListItem)
       }
     }
@@ -178,8 +186,6 @@ function saveEventToLocalStorage(){
     if(eventThisDay){
       eventThisDay.eventsOnDate.push({
         event: eventInput.value,
-        timeFrom: timeFromInput.value,
-        timeTo: timeToInput.value,
         note: noteTextArea.value
       })
     }else{
@@ -188,8 +194,6 @@ function saveEventToLocalStorage(){
         date: dateInput.value,
         eventsOnDate: [{
           event: eventInput.value,
-          timeFrom: timeFromInput.value,
-          timeTo: timeToInput.value,
           note: noteTextArea.value
         }]
       })
