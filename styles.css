@@ -329,7 +329,7 @@ img{
   gap: 3em;
 }
 
-.time-ol{
+.time-list{
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -338,13 +338,24 @@ img{
 }
 
 .event-list{
-  list-style: none;
+  color: var(--dark-gray);
+  list-style: disc;
   padding-left: 3em;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: start;
   gap: 1em;
+
+}
+
+.event-li{
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.marked{
+  text-decoration: line-through;
 }
 
 /* === MEDIA QUERIES === */

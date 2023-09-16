@@ -131,6 +131,7 @@ function initializingButtons () {
 function openAddEventModal(){
   modalsOverlayBg.style.display = "block"
   dateInput.value = selectedDay.toLocaleDateString()
+  
 }
 
 function closeAddEventModal(){
@@ -145,8 +146,6 @@ function closeAddEventModal(){
   const selectedDayString = selectedDay.toLocaleDateString()
 
   displaySelectedDay.innerHTML = selectedDayString
-  const eventListItem = document.createElement('li')
-
   eventList.innerHTML = ''
   for (const obj of events) {
     // Check if the current object's date matches the specific date
@@ -154,10 +153,11 @@ function closeAddEventModal(){
       // Loop through the eventsOnDate array for the current date
       for (const event of obj.eventsOnDate) {
         // Log each event's name
-        console.log(event.event);
+        //console.log(event.event);
 
 
         const eventListItem = document.createElement('li')
+        eventListItem.className = 'event-li'
         eventListItem.textContent = event.event
         document.querySelector('#event-list').appendChild(eventListItem)
       }
