@@ -43,7 +43,7 @@ img{
  --dark-gray: #212529;
  --middle-grey: #b9b9b9;
  --salmon: salmon;
- --current-day: #e04130;
+ --current-day: #a32315;
  --selected: #fa7e7030;
  --green: #35b849;
  --selceted-green: #35b84938;
@@ -109,7 +109,8 @@ img{
 .nav-li{
   width: 1.5em;
 }
-.open-add-event-modal{
+
+.open-event-modal-btn{
   border: none;
   background-color: transparent;
   width: 2.7em;
@@ -117,7 +118,8 @@ img{
 }
 
 /* MODALS */ 
-.add-event-modal{
+
+.modals-overlay-bg{
   display: none;
   position: fixed;
   top: 0;
@@ -126,7 +128,7 @@ img{
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.6);
-  padding-top: 8em;
+  padding-top: 5em;
 }
 
 .add-modal-content{
@@ -202,7 +204,30 @@ img{
 .save-btn:hover{
   background-color: var(--selceted-green);
 }
-/* Input field*/
+
+.time-container{
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1em;
+}
+.time-container > input{
+  width: 100%;
+  padding: 0.5em;
+  border: none;
+  background-color: var(--light-gray);
+  border-radius: 0.3em;
+}
+
+.from-to-text{
+  margin: 0;
+  font-size: 0.9rem;
+  color: gray;
+}
+.time-text{
+  margin-bottom: 0;
+}
+/* Search INPUT*/
 .search-container{
   display: flex;
   justify-content: start;
@@ -310,8 +335,8 @@ img{
   gap: 1em;
 }
 
-.event-ol{
-  list-style-type: circle;
+.event-list{
+  list-style: none;
   padding-left: 3em;
   display: flex;
   flex-direction: column;
@@ -319,6 +344,8 @@ img{
   align-items: start;
   gap: 1em;
 }
+
+event-list
 
 
 

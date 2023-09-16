@@ -4,8 +4,7 @@ const months = ["January","February","March","April","May","June","July","August
 
 const eventsFromLocalStorage = JSON.parse(localStorage.getItem("events"))
 let events = (eventsFromLocalStorage) ? eventsFromLocalStorage : [];
-
-
+console.log(events)
 //weekly calendar
 const weeklyCalendar = document.getElementById("weekly-calendar")
 const weeklyBackBtnEle = document.getElementById("weekly-back-btn")
@@ -18,6 +17,9 @@ const closeAddEventModalBtn = document.getElementById("close-event-modal-btn")
 const openAddEventModalBtn = document.getElementById("open-event-modal-btn")
 const eventInput = document.getElementById("event-input")
 const dateInput = document.getElementById("date-input")
+const noteTextArea = document.getElementById("note-textarea")
+const timeFromInput = document.getElementById("timeFrom-input")
+const timeToInput = document.getElementById("timeTo-input")
 
 
 //displays
@@ -29,9 +31,10 @@ displayCurrentMonthYear.textContent = `${new Date().toLocaleDateString('en-Us',{
   month: 'long',
 })}`
 
-const eventListItem = document.createElement('li')
+//Display selected day
 const displaySelectedDay = document.getElementById("display-selected-day")
 const dailyTasks = document.getElementById("daily-tasks-container")
+const eventList = document.getElementById('event-list')
 
 
 
@@ -134,47 +137,71 @@ function closeAddEventModal(){
   eventInput.value = ''
   dateInput.value = ''
   modalsOverlayBg.style.display = "none"
+  noteTextArea.value = ''
 }
 
  function renderSelectedDay(date) {
-  
   selectedDay = date
-  let selectedDayString = selectedDay.toLocaleDateString()
+  const selectedDayString = selectedDay.toLocaleDateString()
+
   displaySelectedDay.innerHTML = selectedDayString
-    
-  const eventThisDay = events.find(e => e.date === selectedDayString)
-    
-  eventListItem.textContent = ''
+  const eventListItem = document.createElement('li')
 
-  if(eventThisDay){
-    
-    eventListItem.className = 'event-ol'
+  eventList.innerHTML = ''
+  for (const obj of events) {
+    // Check if the current object's date matches the specific date
+    if (obj.date === selectedDayString) {
+      // Loop through the eventsOnDate array for the current date
+      for (const event of obj.eventsOnDate) {
+        // Log each event's name
+        console.log(event.event);
 
-    eventListItem.textContent = eventThisDay.event
 
-     console.log(eventThisDay)
-     document.querySelector('#event-list').appendChild(eventListItem)
+        const eventListItem = document.createElement('li')
+        eventListItem.textContent = event.event
+        document.querySelector('#event-list').appendChild(eventListItem)
+      }
+    }
   }
-  
  }
 
+
 function saveEventToLocalStorage(){
-if(dateInput.value == '' || eventInput.value == ''){
-  console.log("nothing happens")
-}
-else {
-  events.push({
-    date: dateInput.value,
-    event: eventInput.value
-  })
+  if(dateInput.value == '' || eventInput.value == ''){
+    console.log("nothing happens")
+  }
+  else {
+    
+    let selectedDayString = selectedDay.toLocaleDateString()
+    const eventThisDay = events.find(e => e.date === selectedDayString)
+    
+    if(eventThisDay){
+      eventThisDay.eventsOnDate.push({
+        event: eventInput.value,
+        timeFrom: timeFromInput.value,
+        timeTo: timeToInput.value,
+        note: noteTextArea.value
+      })
+    }else{
+    
+      events.push({
+        date: dateInput.value,
+        eventsOnDate: [{
+          event: eventInput.value,
+          timeFrom: timeFromInput.value,
+          timeTo: timeToInput.value,
+          note: noteTextArea.value
+        }]
+      })
+    }
+    }
 
-  localStorage.setItem("events", JSON.stringify(events))
-  
-  renderSelectedDay(selectedDay)
-  closeAddEventModal()
+    localStorage.setItem("events", JSON.stringify(events))
+    
+    renderSelectedDay(selectedDay)
+    closeAddEventModal()
 }
 
-}
 
 
 renderSelectedDay(new Date())
