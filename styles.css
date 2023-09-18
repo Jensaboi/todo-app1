@@ -308,10 +308,6 @@ img{
 .day-container > p {
   margin: 0;
 }
-/* .day-name{
-  font-size: .8rem;
-  font-weight: 900;
-} */
 
 .current-day{
   color: var(--current-day);

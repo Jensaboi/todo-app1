@@ -4,7 +4,7 @@ const months = ["January","February","March","April","May","June","July","August
 
 const eventsFromLocalStorage = JSON.parse(localStorage.getItem("events"))
 let events = (eventsFromLocalStorage) ? eventsFromLocalStorage : [];
-console.log(events)
+
 //weekly calendar
 const weeklyCalendar = document.getElementById("weekly-calendar")
 const weeklyBackBtnEle = document.getElementById("weekly-back-btn")
@@ -38,6 +38,7 @@ const eventList = document.getElementById('event-list')
 
 function renderWeeklyCalendar(){
   const dateObj = new Date()
+  
   
   if(weeklyCalendarNav !== 0){
     dateObj.setDate(new Date().getDate() + weeklyCalendarNav)
@@ -80,7 +81,6 @@ function renderWeeklyCalendar(){
           // Log each event's name
           const taskCircle = document.createElement('div');
           taskCircle.className = "task-circle";
-          console.log(event.event)
   
           tasksContainer.appendChild(taskCircle)
         } 
@@ -88,9 +88,14 @@ function renderWeeklyCalendar(){
       }        
     }
     
+    // Check if there is a selected day, and add the 'selected-day' class if it matches
+    if (selectedDay && selectedDay.toDateString() === new Date(currentYear, currentMonth, mondayDate + i).toDateString()) {
+      weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('selected-day');
+    }
+    
     weeklyDayEl.addEventListener("click", () => {    
-      
-      renderSelectedDay(new Date(currentYear, currentMonth, mondayDate + i))
+      selectedDay = new Date(currentYear, currentMonth, mondayDate + i)
+      renderSelectedDay(selectedDay)
 
       document.querySelectorAll('.weekly-calendar-day').forEach(element => {
         element.classList.remove('selected-day');
@@ -102,8 +107,14 @@ function renderWeeklyCalendar(){
 
     if(mondayDate + i === currentDate && weeklyCalendarNav === 0){
       weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('current-day')
-      weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('selected-day') 
+      if(selectedDay === null){
+        selectedDay = new Date(currentYear, currentMonth, currentDate)
+        console.log(selectedDay)
+        weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('selected-day')
+      }
     }
+
+
 
     document.querySelector('#weekly-calendar').appendChild(weeklyDayEl);
   }
@@ -161,8 +172,7 @@ function closeAddEventModal(){
   noteTextArea.value = ''
 }
 
- function renderSelectedDay(date) {
-  selectedDay = date
+ function renderSelectedDay() {
   const selectedDayString = selectedDay.toLocaleDateString()
 
   displaySelectedDay.innerHTML = `${selectedDayString}`
@@ -223,13 +233,13 @@ function saveEventToLocalStorage(){
   }
   localStorage.setItem("events", JSON.stringify(events))
   
+  
+  renderSelectedDay()
   renderWeeklyCalendar()
-  renderSelectedDay(selectedDay)
   closeAddEventModal()
 }
 
 
-
-renderSelectedDay(new Date())
-initializingButtons()
 renderWeeklyCalendar()
+initializingButtons()
+renderSelectedDay()
