@@ -6,7 +6,7 @@
 
 html{
   scroll-behavior:smooth;
-  min-width: 550px;
+  min-width: 500px;
   min-height: 800px;
 }
 body{
@@ -43,7 +43,7 @@ img{
  --white: #ffffff;
  --light-gray: #efeeee;
  --dark-gray: #212529;
- --middle-grey: #b9b9b9;
+ --middle-grey: #6f6f6f;
  --salmon: salmon;
  --current-day: #a32315;
  --selected: #fa7e7030;
@@ -301,17 +301,17 @@ img{
   justify-content: start;
   align-items: center;
   gap: 0.5em;
-  width: 3em;
+  /* width: 3em; */
   margin-right: 0.3em;
 }
 
 .day-container > p {
   margin: 0;
 }
-.day-name{
+/* .day-name{
   font-size: .8rem;
   font-weight: 900;
-}
+} */
 
 .current-day{
   color: var(--current-day);
@@ -323,7 +323,10 @@ img{
 
 .week-day-name{
   font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--middle-grey);
 }
+
 .tasks-on-weekly-calendar-container{
   display: flex;
   flex-direction: row;
