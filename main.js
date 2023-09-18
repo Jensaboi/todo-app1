@@ -51,20 +51,42 @@ function renderWeeklyCalendar(){
   //gets monday date of current week
   const mondayDate = currentDate - currentWeekDayName + 1 // +1 för måndag
 
-  
   weeklyCalendar.innerHTML = ''
+
   for(let i = 0; i < 7; i++){
     const weeklyDayEl = document.createElement('div')
     weeklyDayEl.className = "day-container"
     weeklyDayEl.dataset.date = new Date(currentYear, currentMonth, mondayDate + i);
     weeklyDayEl.innerHTML = 
-    `<p>
+    `<p class="week-day-name">
       ${getWeekDayName(currentYear,currentMonth,mondayDate + i)}
     </p>
 
     <p class="weekly-calendar-day">
       ${getDateNumber(currentYear,currentMonth,mondayDate + i)}
-    </p>`
+    </p>
+    `
+    
+
+    //Loop through events of objects
+    for (const obj of events) {
+      // Check if the current object's date matches the specific date
+      if (obj.date === new Date(currentYear,currentMonth,mondayDate + i).toLocaleDateString()) {  
+        
+        const tasksContainer = document.createElement('div');
+        tasksContainer.className = "tasks-on-weekly-calendar-container";
+        // Loop through the eventsOnDate array for the current date
+        for (const event of obj.eventsOnDate) {
+          // Log each event's name
+          const taskCircle = document.createElement('div');
+          taskCircle.className = "task-circle";
+          console.log(event.event)
+  
+          tasksContainer.appendChild(taskCircle)
+        } 
+        weeklyDayEl.appendChild(tasksContainer);
+      }        
+    }
     
     weeklyDayEl.addEventListener("click", () => {    
       
@@ -84,7 +106,6 @@ function renderWeeklyCalendar(){
     }
 
     document.querySelector('#weekly-calendar').appendChild(weeklyDayEl);
-    
   }
 
   displayMonth.innerHTML = `${months[currentMonth]}`
@@ -124,6 +145,7 @@ function initializingButtons () {
   saveEventBtn.addEventListener('click', saveEventToLocalStorage)
   
 }
+
 
 
 function openAddEventModal(){
@@ -198,12 +220,12 @@ function saveEventToLocalStorage(){
         }]
       })
     }
-    }
-
-    localStorage.setItem("events", JSON.stringify(events))
-    
-    renderSelectedDay(selectedDay)
-    closeAddEventModal()
+  }
+  localStorage.setItem("events", JSON.stringify(events))
+  
+  renderWeeklyCalendar()
+  renderSelectedDay(selectedDay)
+  closeAddEventModal()
 }
 
 
@@ -211,4 +233,3 @@ function saveEventToLocalStorage(){
 renderSelectedDay(new Date())
 initializingButtons()
 renderWeeklyCalendar()
-

@@ -49,7 +49,8 @@ img{
  --selected: #fa7e7030;
  --green: #35b849;
  --selceted-green: #35b84938;
- --lightblue:rgba(173, 216, 230, 0.288);
+ --lightblue-opacity:rgba(173, 216, 230, 0.288);
+ --lightblue: lightblue;
 }
 
 /* === FONTS SIZE/COLORS === */
@@ -101,7 +102,7 @@ img{
   border-radius: 0.5em;
   position: fixed;
   left: 5%;
-  bottom: 3%;
+  bottom: 1%;
   z-index: 999;
 }
 .nav-bar-ul{
@@ -262,8 +263,6 @@ img{
 /* Weekly calendar */ 
 .weekly-calendar-container{
   margin-top: 1em;
-  border-top: 1px solid var(--light-gray);
-  border-bottom: 1px solid var(--light-gray);
 }
 .weekly-calendar-buttons{
   display: flex;
@@ -286,11 +285,10 @@ img{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
 }
 .weekly-calendar-day{
   text-align: center;
-  background-color: var(--light-gray);
   padding: 0.5em;
   border-radius: 50%;
   font-weight: 700;
@@ -300,9 +298,10 @@ img{
 .day-container{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  gap: 0.2em;
+  gap: 0.5em;
+  width: 2.5em;
   margin-right: 0.3em;
 }
 
@@ -311,7 +310,7 @@ img{
 }
 .day-name{
   font-size: .8rem;
-  font-weight: 300;
+  font-weight: 900;
 }
 
 .current-day{
@@ -322,6 +321,24 @@ img{
   background-color: var(--selected);
 }
 
+.week-day-name{
+  font-size: 0.8rem;
+}
+.tasks-on-weekly-calendar-container{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.task-circle{
+  width: 5px;
+  height: 5px;
+  background-color: var(--lightblue);
+  border-radius: 50%;
+}
 /* DAILY TASKS */
 .display-selected-day{
   margin: 0;
@@ -342,7 +359,7 @@ img{
 }
 
 .event-li{
-  background-color: var(--lightblue);
+  background-color: var(--lightblue-opacity);
   font-size: 1.2rem;
   font-weight: 600;
   padding: 0.5em;
