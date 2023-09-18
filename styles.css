@@ -41,8 +41,9 @@ img{
 
 :root{
  --white: #ffffff;
- --light-gray: #efeeee;
+ --light-gray: #efeeeea0;
  --dark-gray: #212529;
+ --almost-dark-gray: #313232;
  --middle-grey: #6f6f6f;
  --salmon: salmon;
  --current-day: #a32315;
@@ -68,9 +69,9 @@ img{
   align-items: center;
 }
 .calendar-btn{
-  width: 3em;
-  height: 3em;
-  padding: 0.3em;
+  width: 3.5em;
+  height: 3.5em;
+  padding: 0.5em;
   border-radius: 50%;
   border: 5px solid var(--light-gray);
   background-color: var(--white);
@@ -85,7 +86,7 @@ img{
 
 .welcome-msg{
   font-size: 1.6rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .month-year{
@@ -97,7 +98,7 @@ img{
 /* NAV BAR */
 .main-nav{
   width: 90%;
-  background-color: var(--dark-gray);
+  background-color: var(--almost-dark-gray);
   padding: 1.2em 1.8em;
   border-radius: 0.5em;
   position: fixed;
@@ -271,9 +272,9 @@ img{
 }
 .weekly-btn{
   border-radius: 0.5em;
-  border: 1px solid var(--light-gray);
+  border: none;
   background-color: var(--salmon);
-  padding: 0.7em 1.5em;
+  padding: 0.5em 1em;
   color: var(--white);
   font-weight: 700;
   letter-spacing: 1px;
@@ -289,11 +290,12 @@ img{
 }
 .weekly-calendar-day{
   text-align: center;
-  padding: 0.5em;
+  padding: 0.35em;
   border-radius: 50%;
   font-weight: 700;
   font-size: 1.1rem;
-  width: 2.3em;
+  width: 2.2em;
+  border: 2px solid var(--light-gray);
 }
 .day-container{
   display: flex;
@@ -315,6 +317,7 @@ img{
 
 .selected-day{
   background-color: var(--selected);
+  border: none;
 }
 
 .week-day-name{

@@ -39,7 +39,7 @@ const eventList = document.getElementById('event-list')
 function renderWeeklyCalendar(){
   const dateObj = new Date()
   
-  
+  //Sets date with nav if its not 0
   if(weeklyCalendarNav !== 0){
     dateObj.setDate(new Date().getDate() + weeklyCalendarNav)
   }
@@ -69,7 +69,7 @@ function renderWeeklyCalendar(){
     `
     
 
-    //Loop through events of objects
+    //Loop through arr events of objects
     for (const obj of events) {
       // Check if the current object's date matches the specific date
       if (obj.date === new Date(currentYear,currentMonth,mondayDate + i).toLocaleDateString()) {  
