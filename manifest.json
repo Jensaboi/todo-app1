@@ -3,12 +3,12 @@
   "version": "1.0",
   "name": "Weekly Calendar",
   "description": "One of my first bigger projects",
-  "browser_action": {
-    "default_popup": "index.html",
-    "default_icon": {
-      "16": "assets/jsonmanifesticons/icon-calendar24.png",
-      "48": "assets/jsonmanifesticons/icon-calendar48.png",
-      "128": "assets/jsonmanifesticons/icon-calendar98.png"
-    }
+  "action": {
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "24": "assets/jsonmanifesticons/icon-calendar24.png",   // 16x16 pixel icon
+    "48": "assets/jsonmanifesticons/icon-calendar48.png",   // 48x48 pixel icon
+    "98": "assets/jsonmanifesticons/icon-calendar98.png"  // 128x128 pixel icon
   }
 }
