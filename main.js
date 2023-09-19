@@ -49,6 +49,9 @@ function renderWeeklyCalendar(){
   const currentYear = dateObj.getFullYear()
   const currentMonth = dateObj.getMonth()
  
+  displayMonth.innerHTML = `${months[currentMonth]} ${currentYear % 100}`
+  Intl.DateTimeFormat
+  
   //gets monday date of current week
   const mondayDate = currentDate - currentWeekDayName + 1 // +1 för måndag
 
@@ -115,12 +118,8 @@ function renderWeeklyCalendar(){
       }
     }
 
-
-
     document.querySelector('#weekly-calendar').appendChild(weeklyDayEl);
   }
-
-  displayMonth.innerHTML = `${months[currentMonth]}`
 }
 
 //Gets weekday name
