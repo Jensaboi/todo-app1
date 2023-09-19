@@ -1,27 +1,36 @@
 /* === RESETS === */
 
-*,*::before,*::after{
+*,
+*::before,
+*::after{
   box-sizing: border-box;
 }
 
 html{
+  user-select: none;
   scroll-behavior:smooth;
-  min-width: 500px;
-  min-height: 800px;
+  background-color: var(--black);
+  background-image: url("assets/bg/");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 50%;
+  background-size: cover;
+  
 }
-body{
-  user-select: none;
+body{ 
   margin: 0;
-  padding: 1.5em 1em;
+  padding: 0;
   text-decoration: none;
-  font-family: 'Nunito', sans-serif;
-  background-color: var(--white);
+  font-family: 'Roboto', sans-serif;
+  background-color: transparent;
   line-height: 1.4;
-  color: var(--dark-gray);
+  color: var(--white);
 }
-
-ul, li , a, p {
-  user-select: none;
+h1,h2,h3,h4,p{
+  margin: 0;
+}
+ul, li , a{
+  list-style-type: none;
   padding: 0;
   margin: 0;
   text-decoration: none;
@@ -40,18 +49,21 @@ img{
 /* === VARIABLES  === */
 
 :root{
- --white: #ffffff;
- --light-gray: #efeeeea0;
- --dark-gray: #212529;
- --almost-dark-gray: #313232;
- --middle-grey: #6f6f6f;
- --salmon: salmon;
- --current-day: #a32315;
- --selected: #fa7e7030;
- --green: #35b849;
- --selceted-green: #35b84938;
- --lightblue-opacity:rgba(173, 216, 230, 0.288);
- --lightblue: lightblue;
+  --black: #121112;
+  --white: #d9d9d9;
+  --gray-300: #757575;
+  --gray-500: #262626;
+  --light-gray: #efeeeea0;
+  --dark-gray: #212529;
+  --almost-dark-gray: #313232;
+  --middle-grey: #6f6f6f;
+  --salmon: salmon;
+  --current-day: #8d97ef;
+  --selected: #fa7e7030;
+  --green: #35b849;
+  --selceted-green: #35b84938;
+  --lightblue-opacity:rgba(173, 216, 230, 0.443);
+  --lightblue: lightblue;
 }
 
 /* === FONTS SIZE/COLORS === */
@@ -68,27 +80,6 @@ img{
   justify-content: space-between;
   align-items: center;
 }
-.calendar-btn{
-  width: 3.5em;
-  height: 3.5em;
-  padding: 0.5em;
-  border-radius: 50%;
-  border: 5px solid var(--light-gray);
-  background-color: var(--white);
-}
-.profile-img-div{
-  width: 3em;
-  height: 3em;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 5px solid var(--light-gray);
-}
-
-.welcome-msg{
-  font-size: 1.6rem;
-  font-weight: 700;
-}
-
 .month-year{
   font-family: 'Roboto Slab', serif;
   font-size: 1.5rem;
@@ -98,7 +89,7 @@ img{
 /* NAV BAR */
 .main-nav{
   width: 90%;
-  background-color: var(--almost-dark-gray);
+  background-color: var(--gray-500);
   padding: 1.2em 1.8em;
   border-radius: 0.5em;
   position: fixed;
@@ -111,9 +102,6 @@ img{
   justify-content: space-between;
   align-items: center;
   
-}
-.nav-li{
-  width: 1.5em;
 }
 
 .open-event-modal-btn{
@@ -234,81 +222,104 @@ img{
   margin-bottom: 0;
 }
 /* Search INPUT*/
-.search-container{
-  display: flex;
-  justify-content: start;
-  align-items: center;
-
-}
-.search-bar{
-  position: relative;
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  background-color: var(--light-gray);
-  border: none;
-  padding: 1em 1em 1em 3em;
-  border-radius: 2em;
-  font-size: 1rem;
-}
-.search-btn{
-  width: 3em;
-  height: 3em;
-  padding: 0.5em;
-  position: absolute;
-  border: none;
-  border-radius: 50%;
-  background-color: var(--light-gray);
-}
 
 /* Weekly calendar */ 
+
 .weekly-calendar-container{
-  margin-top: 1em;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7em;
+  border-bottom: 2px solid var(--gray-500);
+  padding: 1em 0;
 }
+
+.calendar-displaymonth-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-btn{
+  margin-left: 1em;
+  padding:0.5em;
+  border-radius: 50%;
+  border: 3px solid var(--gray-300);
+  background-color: transparent;
+}
+
+.toggle-month-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display-month{
+  color: var(--white);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.arrow-btn{
+  border: none;
+  background-color: transparent;
+}
+
 .weekly-calendar-buttons{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .weekly-btn{
-  border-radius: 0.5em;
   border: none;
-  background-color: var(--salmon);
-  padding: 0.5em 1em;
   color: var(--white);
-  font-weight: 700;
-  letter-spacing: 1px;
+  background-color: transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  
 }
 .weekly-calendar{
   width: 100%;
-  overflow: hidden;
-  padding: 0.5em 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: start;
-}
-.weekly-calendar-day{
-  text-align: center;
-  padding: 0.35em;
-  border-radius: 50%;
-  font-weight: 700;
-  font-size: 1.1rem;
-  width: 2.2em;
-  border: 2px solid var(--light-gray);
+  padding-bottom: 0.5em;
 }
 .day-container{
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 0.5em;
-  /* width: 3em; */
-  margin-right: 0.3em;
+  gap: 0.3em;
 }
 
 .day-container > p {
   margin: 0;
+}
+
+.date-circle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray-500);
+  color: var(--white);
+  border-radius: 50%;
+  font-weight: 700;
+  width: 48px;
+  height: 48px;
+  background-color: var(--gray-500);
+  color: var(--white);
 }
 
 .current-day{
@@ -323,13 +334,13 @@ img{
 .week-day-name{
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--middle-grey);
+  color: var(--gray-300);
 }
 
 .tasks-on-weekly-calendar-container{
   display: flex;
   flex-direction: row;
-  gap: 2px;
+  gap: 3px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -341,15 +352,23 @@ img{
   background-color: var(--lightblue);
   border-radius: 50%;
 }
+
 /* DAILY TASKS */
-.display-selected-day{
-  margin: 0;
-  font-size: 1.2rem;
+.daily-tasks-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
 }
 .tasks-on-day{
-  font-weight: 800;
+  font-weight: 500;
+}
+.display-selected-day{
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 .event-list{
+  background-color: transparent;
   color: var(--dark-gray);
   list-style: none;
   display: flex;
@@ -361,18 +380,17 @@ img{
 }
 
 .event-li{
-  background-color: var(--lightblue-opacity);
-  font-size: 1.2rem;
-  font-weight: 600;
-  padding: 0.5em;
+  color: var(--white);
+  background-color: var(--gray-500);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1em;
   border-radius: 0.5em;
 }
 .note-paragraph{
+  color: var(--gray-300);
   margin-top: 0.2em;
   font-size: 0.9rem;
-}
-.marked{
-  text-decoration: line-through;
 }
 
 /* === MEDIA QUERIES === */

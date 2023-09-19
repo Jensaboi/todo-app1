@@ -1,5 +1,5 @@
 let weeklyCalendarNav = 0;
-let selectedDay = null;
+let selectedDay = new Date();
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
 const eventsFromLocalStorage = JSON.parse(localStorage.getItem("events"))
@@ -24,10 +24,10 @@ const noteTextArea = document.getElementById("note-textarea")
 const displayCurrentMonthYear = document.getElementById("display-current-mont-year")
 const displayMonth = document.getElementById("display-month")
 
-displayCurrentMonthYear.textContent = `${new Date().toLocaleDateString('en-Us',{
-  year: 'numeric',
-  month: 'long',
-})}`
+// displayCurrentMonthYear.textContent = `${new Date().toLocaleDateString('en-Us',{
+//   year: 'numeric',
+//   month: 'long',
+// })}`
 
 //Display selected day
 const displaySelectedDay = document.getElementById("display-selected-day")
@@ -57,15 +57,16 @@ function renderWeeklyCalendar(){
   for(let i = 0; i < 7; i++){
     const weeklyDayEl = document.createElement('div')
     weeklyDayEl.className = "day-container"
-    weeklyDayEl.dataset.date = new Date(currentYear, currentMonth, mondayDate + i);
+    //weeklyDayEl.dataset.date = new Date(currentYear, currentMonth, mondayDate + i);
     weeklyDayEl.innerHTML = 
     `<p class="week-day-name">
       ${getWeekDayName(currentYear,currentMonth,mondayDate + i)}
     </p>
-
-    <p class="weekly-calendar-day">
-      ${getDateNumber(currentYear,currentMonth,mondayDate + i)}
-    </p>
+    <div class="date-circle">
+      <p class="weekly-calendar-day">
+        ${getDateNumber(currentYear,currentMonth,mondayDate + i)}
+      </p>
+    </div>
     `
     
 
@@ -90,27 +91,27 @@ function renderWeeklyCalendar(){
     
     // Check if there is a selected day, and add the 'selected-day' class if it matches
     if (selectedDay && selectedDay.toDateString() === new Date(currentYear, currentMonth, mondayDate + i).toDateString()) {
-      weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('selected-day');
+      weeklyDayEl.querySelector('.date-circle').classList.add('selected-day');
     }
     
     weeklyDayEl.addEventListener("click", () => {    
       selectedDay = new Date(currentYear, currentMonth, mondayDate + i)
       renderSelectedDay(selectedDay)
 
-      document.querySelectorAll('.weekly-calendar-day').forEach(element => {
+      document.querySelectorAll('.date-circle').forEach(element => {
         element.classList.remove('selected-day');
     });
     
-    weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('selected-day') 
+    weeklyDayEl.querySelector('.date-circle').classList.add('selected-day') 
 
     })
 
     if(mondayDate + i === currentDate && weeklyCalendarNav === 0){
-      weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('current-day')
+      weeklyDayEl.querySelector('.date-circle').classList.add('current-day')
       if(selectedDay === null){
         selectedDay = new Date(currentYear, currentMonth, currentDate)
         console.log(selectedDay)
-        weeklyDayEl.querySelector('.weekly-calendar-day').classList.add('selected-day')
+        weeklyDayEl.querySelector('.date-circle').classList.add('selected-day')
       }
     }
 
