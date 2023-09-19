@@ -15,7 +15,8 @@ html{
   background-position: bottom;
   background-size: 50%;
   background-size: cover;
-  
+  min-width: 500px;
+  min-height: 800px;
 }
 body{ 
   margin: 0;
