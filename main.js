@@ -1,9 +1,10 @@
 let weeklyCalendarNav = 0;
-let selectedDay = new Date();
+let selectedDay = null;
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
 const eventsFromLocalStorage = JSON.parse(localStorage.getItem("events"))
 let events = (eventsFromLocalStorage) ? eventsFromLocalStorage : [];
+console.log(events)
 
 //weekly calendar
 const weeklyCalendar = document.getElementById("weekly-calendar")
@@ -50,7 +51,6 @@ function renderWeeklyCalendar(){
   const currentMonth = dateObj.getMonth()
  
   displayMonth.innerHTML = `${months[currentMonth]} ${currentYear % 100}`
-  Intl.DateTimeFormat
   
   //gets monday date of current week
   const mondayDate = currentDate - currentWeekDayName + 1 // +1 för måndag
@@ -60,7 +60,6 @@ function renderWeeklyCalendar(){
   for(let i = 0; i < 7; i++){
     const weeklyDayEl = document.createElement('div')
     weeklyDayEl.className = "day-container"
-    //weeklyDayEl.dataset.date = new Date(currentYear, currentMonth, mondayDate + i);
     weeklyDayEl.innerHTML = 
     `<p class="week-day-name">
       ${getWeekDayName(currentYear,currentMonth,mondayDate + i)}
@@ -72,35 +71,15 @@ function renderWeeklyCalendar(){
     </div>
     `
     
-
-    //Loop through arr events of objects
-    for (const obj of events) {
-      // Check if the current object's date matches the specific date
-      if (obj.date === new Date(currentYear,currentMonth,mondayDate + i).toLocaleDateString()) {  
-        
-        const tasksContainer = document.createElement('div');
-        tasksContainer.className = "tasks-on-weekly-calendar-container";
-        // Loop through the eventsOnDate array for the current date
-        for (const event of obj.eventsOnDate) {
-          // Log each event's name
-          const taskCircle = document.createElement('div');
-          taskCircle.className = "task-circle";
-  
-          tasksContainer.appendChild(taskCircle)
-        } 
-        weeklyDayEl.appendChild(tasksContainer);
-      }        
-    }
-    
     // Check if there is a selected day, and add the 'selected-day' class if it matches
-    if (selectedDay && selectedDay.toDateString() === new Date(currentYear, currentMonth, mondayDate + i).toDateString()) {
+    if (selectedDay && formatDateToYYYYMMDD(selectedDay) === formatDateToYYYYMMDD(new Date(currentYear, currentMonth, mondayDate + i))) {
       weeklyDayEl.querySelector('.date-circle').classList.add('selected-day');
     }
     
     weeklyDayEl.addEventListener("click", () => {    
       selectedDay = new Date(currentYear, currentMonth, mondayDate + i)
       renderSelectedDay(selectedDay)
-
+      console.log(formatDateToYYYYMMDD(selectedDay))
       document.querySelectorAll('.date-circle').forEach(element => {
         element.classList.remove('selected-day');
     });
@@ -113,9 +92,28 @@ function renderWeeklyCalendar(){
       weeklyDayEl.querySelector('.date-circle').classList.add('current-day')
       if(selectedDay === null){
         selectedDay = new Date(currentYear, currentMonth, currentDate)
-        console.log(selectedDay)
         weeklyDayEl.querySelector('.date-circle').classList.add('selected-day')
       }
+    }
+    
+    //render out tasks on that day
+    //Loop through arr events of objects
+    for (const obj of events) {
+      // Check if the current object's date matches the specific date
+      if (obj.date === formatDateToYYYYMMDD(new Date(currentYear, currentMonth, mondayDate + i))) {  
+
+        const tasksContainer = document.createElement('div');
+        tasksContainer.className = "tasks-on-weekly-calendar-container";
+        // Loop through the eventsOnDate array for the current date
+        for (const event of obj.eventsOnDate) {
+          // Log each event's name
+          const taskCircle = document.createElement('div');
+          taskCircle.className = "task-circle";
+  
+          tasksContainer.appendChild(taskCircle)
+        } 
+        weeklyDayEl.appendChild(tasksContainer);
+      }        
     }
 
     document.querySelector('#weekly-calendar').appendChild(weeklyDayEl);
@@ -134,6 +132,12 @@ const getDateNumber = (year,month,days) =>{
   let date = new Date(Date.UTC(year,month,days))
   const weekDate = {day: 'numeric'}
   return new Intl.DateTimeFormat('en-Us', weekDate).format(date)
+}
+
+function formatDateToYYYYMMDD(date) {
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const dateFormatter = new Intl.DateTimeFormat('en-CA', options);
+  return dateFormatter.format(date);
 }
 
 
@@ -161,7 +165,7 @@ function initializingButtons () {
 
 function openAddEventModal(){
   modalsOverlayBg.style.display = "block"
-  dateInput.value = selectedDay.toLocaleDateString()
+  dateInput.value = formatDateToYYYYMMDD(selectedDay)
   
 }
 
@@ -173,7 +177,7 @@ function closeAddEventModal(){
 }
 
  function renderSelectedDay() {
-  const selectedDayString = selectedDay.toLocaleDateString()
+  const selectedDayString = formatDateToYYYYMMDD(selectedDay)
 
   displaySelectedDay.innerHTML = `${selectedDayString}`
   eventList.innerHTML = ''
@@ -212,7 +216,7 @@ function saveEventToLocalStorage(){
   }
   else {
     
-    let selectedDayString = selectedDay.toLocaleDateString()
+    let selectedDayString = formatDateToYYYYMMDD(selectedDay)
     const eventThisDay = events.find(e => e.date === selectedDayString)
     
     if(eventThisDay){
