@@ -217,6 +217,7 @@ function saveEventToLocalStorage(){
   else {
     
     let selectedDayString = formatDateToYYYYMMDD(selectedDay)
+
     const eventThisDay = events.find(e => e.date === selectedDayString)
     
     if(eventThisDay){
