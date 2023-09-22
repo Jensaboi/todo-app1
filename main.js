@@ -19,6 +19,7 @@ const openAddEventModalBtn = document.getElementById("open-event-modal-btn")
 const eventInput = document.getElementById("event-input")
 const dateInput = document.getElementById("date-input")
 const noteTextArea = document.getElementById("note-textarea")
+const priorityInput = document.getElementById("select-input")
 
 
 //displays
@@ -66,6 +67,7 @@ function renderWeeklyCalendar(){
     </div>
     `
     weeklyDayEl.addEventListener("click", () => {    
+      
       selectedDay = new Date(currentYear, currentMonth, mondayDate + i)
       renderSelectedDay(selectedDay)
       
@@ -78,7 +80,7 @@ function renderWeeklyCalendar(){
       weeklyDayEl.querySelector('.date-circle').classList.add('selected-day') 
     })
 
-     // re adds selected day if user change week and then goes back
+     // readds selected day if user change week and then goes back
     if (formatDateToYYYYMMDD(selectedDay) === formatDateToYYYYMMDD(new Date(currentYear, currentMonth, mondayDate + i))) {
       weeklyDayEl.querySelector('.date-circle').classList.add('selected-day');
     }
@@ -101,7 +103,7 @@ function renderWeeklyCalendar(){
       for(const taskObj of tasksOnDate[formatDateToYYYYMMDD(new Date(currentYear, currentMonth, mondayDate + i))]){
         
         const taskCircle = document.createElement('div');
-        taskCircle.className = "task-circle";
+        taskCircle.className = `task-circle ${taskObj.priority}`;
         tasksContainer.appendChild(taskCircle)       
       }
       weeklyDayEl.appendChild(tasksContainer);
@@ -124,6 +126,7 @@ const getDateNumber = (year,month,days) =>{
   return new Intl.DateTimeFormat('en-Us', weekDate).format(date)
 }
 
+//Gets YYYYMMDD format
 function formatDateToYYYYMMDD(date) {
   const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
   const dateFormatter = new Intl.DateTimeFormat('en-CA', options);
@@ -188,16 +191,23 @@ function renderSelectedDay() {
   
   if(selectedDayString in tasksOnDate){
     const tasksForSelectedDate = tasksOnDate[selectedDayString]
+    console.log(tasksOnDate[selectedDayString])
 
     for(const taskObj of tasksForSelectedDate){
       const eventListItem = document.createElement('li')
       eventListItem.className = 'event-li'
-      eventListItem.innerHTML = taskObj.task
+      eventListItem.innerHTML = 
+      `
+      <div class="task-priority ${taskObj.priority}">
+        <p>${taskObj.priority}</p>
+      </div>
+      <p class="task-p">${taskObj.task}</p>
+      `
   
       //Check if there's a note and add it to the list item
       if (taskObj.note) {
         const noteParagraph = document.createElement('p');
-        noteParagraph.className = 'note-paragraph'
+        noteParagraph.className = 'note-p'
         noteParagraph.textContent = ` - ${taskObj.note}`;
           
         eventListItem.appendChild(noteParagraph);
@@ -214,7 +224,7 @@ function saveEventToLocalStorage(){
   } else {
     
     let selectedDayString = formatDateToYYYYMMDD(selectedDay)
-    let task = new Task(eventInput.value,"high",noteTextArea.value, 1215, 1315)
+    let task = new Task(eventInput.value,priorityInput.value,noteTextArea.value, 1215, 1315)
     addTaskToDate(selectedDayString,task)
 
   }

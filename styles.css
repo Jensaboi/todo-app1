@@ -50,10 +50,13 @@ img{
 /* === VARIABLES  === */
 
 :root{
+  --high-prio: hsla(0, 36%, 44%, 0.617);
+  --mid-prio: hsla(39, 100%, 51%, 0.571);
+  --low-prio: hsla(194, 43%, 75%, 0.724);
   --black: #121112;
   --white: #d9d9d9;
-  --gray-300: #757575;
-  --gray-500: #262626;
+  --gray-300: hsl(0, 0%, 46%);
+  --gray-500: hsl(0, 0%, 15%);
   --light-gray: #efeeeea0;
   --dark-gray: #212529;
   --almost-dark-gray: #313232;
@@ -64,7 +67,6 @@ img{
   --green: #35b849;
   --selceted-green: #35b84938;
   --lightblue-opacity:rgba(173, 216, 230, 0.443);
-  --lightblue: lightblue;
 }
 
 /* === FONTS SIZE/COLORS === */
@@ -113,6 +115,10 @@ img{
 }
 
 /* MODALS */ 
+.priority-select{
+  background-color: var(--gray-300);
+  color: var(--white);
+}
 
 .modals-overlay-bg{
   display: none;
@@ -331,6 +337,19 @@ img{
   background-color: var(--lightblue);
   border-radius: 50%;
 }
+/* PRIORITY COLORS */
+
+.high{
+  background-color: var(--high-prio);
+}
+
+.mid{
+  background-color: var(--mid-prio);
+}
+
+.low{
+  background-color: var(--low-prio);
+}
 
 /* DAILY TASKS */
 .daily-tasks-container{
@@ -357,16 +376,29 @@ img{
   gap: 0.5em;
 
 }
-
 .event-li{
-  color: var(--white);
   background-color: var(--gray-500);
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 1em;
+  padding: 0.4em;
   border-radius: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
 }
-.note-paragraph{
+.task-priority{
+  display: inline-block;
+  padding: 0.2em 0.3em;
+  border-radius: 0.5em;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--black);
+}
+.task-p{
+  margin-top: 1em;
+  color: var(--white);
+}
+.note-p{
   color: var(--gray-300);
   margin-top: 0.2em;
   font-size: 0.9rem;
