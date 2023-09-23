@@ -15,8 +15,7 @@ const weeklyNextBtnEle = document.getElementById("weekly-next-btn")
 const modalsOverlayBg = document.getElementById("modals-overlay-bg")
 const saveEventBtn = document.getElementById("save-event-btn")
 const closeAddEventModalBtn = document.getElementById("close-event-modal-btn")
-const openAddEventModalBtn = document.getElementById("open-event-modal-btn")
-const eventInput = document.getElementById("event-input")
+const eventInput = document.getElementById("task-input")
 const dateInput = document.getElementById("date-input")
 const noteTextArea = document.getElementById("note-textarea")
 const priorityInput = document.getElementById("select-input")
@@ -145,12 +144,12 @@ function initializingButtons () {
     renderWeeklyCalendar()
   })
 
-  openAddEventModalBtn.addEventListener('click', openAddEventModal)
+  document.getElementById("open-event-modal-btn").addEventListener('click', openAddEventModal)
 
   closeAddEventModalBtn.addEventListener('click', closeAddEventModal)
 
   saveEventBtn.addEventListener('click', saveEventToLocalStorage)
-  
+
 }
 
 function openAddEventModal(){

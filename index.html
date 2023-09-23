@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Home</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,25 +15,30 @@
       <ul class="nav-bar-ul">
 
         <li class="nav-li">
-          <a href=""><img src="./assets/icons/home.svg" alt=""></a>
+          <a href="../index.html"><img src="../assets/icons/home.svg" alt=""></a>
         </li>
 
         <li class="nav-li">
-          <button class="open-event-modal-btn" id="open-event-modal-btn"><img src="./assets/icons/plus-sign.svg" alt=""></button>
+          <a href="../pages/schedule.html"><img src="../assets/icons/calendar.svg" alt=""></a>
         </li>
 
         <li class="nav-li">
-          <a href=""><img src="./assets/icons/document.svg" alt=""></a>
+          <button class="open-event-modal-btn" id="open-event-modal-btn"><img src="../assets/icons/plus-sign.svg" alt=""></button>
         </li>
 
         <li class="nav-li">
-          <a href=""><img src="./assets/icons/settings.svg" alt=""></a>
+          <a href=""><img src="../assets/icons/document.svg" alt=""></a>
+        </li>
+
+        <li class="nav-li">
+          <a href=""><img src="../assets/icons/settings.svg" alt=""></a>
         </li>
 
       </ul>
     </nav>
 
   </header>
+  
   <main>
 
     <div id="modals-overlay-bg" class="modals-overlay-bg">
@@ -63,47 +68,5 @@
           <button id="save-event-btn" class="save-btn">Add event</button>
         </div>
     </div>
-     
-    <div class="weekly-calendar-container">
-
-      <div class="calendar-displaymonth-container">
-        <button class="calendar-btn"><img src="./assets/icons/calendar.svg" alt=""></button>
-        
-        <div class="toggle-month-container">
-          <button class="arrow-btn"><img src="./assets/icons/arrow-left.svg" alt=""></button>
-          
-          <h2 id="display-month" class="display-month">Month</h2>
-          
-          <button class="arrow-btn"><img src="./assets/icons/arrow-right.svg" alt=""></button>
-        </div>
-      </div>
-
-      <div id="weekly-calendar" class="weekly-calendar"> 
-      </div>
-
-      <div class="weekly-calendar-buttons">
-  
-        <button id="weekly-back-btn" class="weekly-btn"><img src="./assets/icons/arrow-left.svg">back</button>
-     
-        <button id="weekly-next-btn" class="weekly-btn">Next<img src="./assets/icons/arrow-right.svg"></button>
-      
-      </div>
-    </div>
-    
-    <div class="daily-tasks-container">
-      <div>
-        <h2 class="tasks-on-day">Tasks on</h2>
-        <p class="display-selected-day" id="display-selected-day">date</p>
-      </div>
-      
-      <div>
-        <ul id="event-list" class="event-list">
-
-        </ul>
-      </div>
-    </div>
 
   </main>
-  <script type="module" src="./main.js"></script>
-</body>
-</html>
