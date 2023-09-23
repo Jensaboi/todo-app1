@@ -19,6 +19,7 @@ html{
   height: 800px; 
   overflow: scroll;
 }
+
 body{ 
   margin: 0;
   padding: 0;
@@ -28,9 +29,11 @@ body{
   line-height: 1.4;
   color: var(--white);
 }
+
 h1,h2,h3,h4,p{
   margin: 0;
 }
+
 ul, li , a{
   list-style-type: none;
   padding: 0;
@@ -377,6 +380,7 @@ img{
   height: 48px;
   background-color: var(--gray-500);
   color: var(--white);
+  cursor: pointer;
 }
 
 .current-day{
