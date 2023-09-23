@@ -56,35 +56,47 @@
           <div id="priority-container">
             <p>Priority</p>
             <select class="priority-select" name="" id="select-input">
-              <option id="high-prio" value="high">High</option>
-              <option id="mid-prio" value="mid">Mid</option>
-              <option id="low-prio" value="low">Low</option>
+              <option id="high-prio" value="High">High</option>
+              <option id="mid-prio" value="Mid">Mid</option>
+              <option id="low-prio" value="Low">Low</option>
             </select>
           </div>
 
           <div>
-            <p class="modal-text">Start Date</p>
+            <p class="modal-text">Date</p>
             <input class="date-input" type="date" id="date-input">
-          </div>
-          
-          <div>
-            <p class="modal-text">End Date</p>
-            <input class="date-input" type="date" id="">
           </div>
 
           <div>
-            <p class="modal-text">Notes</p>
-            <textarea class="add-textarea" id="note-textarea"></textarea>
+            <p class="modal-text">time</p>
+            <div class="time-container">
+              <div>
+                <p class="time-text">start</p>
+                <input type="time" id="time-from-input">
+              </div>
+              <div>
+                <p class="time-text">end</p>
+                <input type="time" id="time-end-input">
+              </div> 
+            </div>
+          </div>
+
+          <div>
+            <p class="modal-text">Note</p>
+            <textarea class="note-textarea" id="note-textarea"></textarea>
           </div>
 
           <div>
             <p>Pick Task Color</p>
             <div class="color-input-container">
-              <input type="radio">
-              <input type="radio">
-              <input type="radio">
-              <input type="radio">
-              <input type="radio">
+              <input name="color" value="red" type="radio">
+              <input name="color" value="green" type="radio">
+              <input name="color" value="blue" type="radio">
+              <input name="color" value="pink" type="radio">
+              <input name="color" value="purple" type="radio">
+              <input name="color" value="lightblue" type="radio">
+              <input name="color" value="orange" type="radio">
+              <input name="color" value="violet" type="radio">
             </div>
           </div>
           <button id="save-event-btn" class="save-btn">Create Task</button>

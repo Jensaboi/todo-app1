@@ -15,11 +15,12 @@ const weeklyNextBtnEle = document.getElementById("weekly-next-btn")
 const modalsOverlayBg = document.getElementById("modals-overlay-bg")
 const saveEventBtn = document.getElementById("save-event-btn")
 const closeAddEventModalBtn = document.getElementById("close-event-modal-btn")
-const eventInput = document.getElementById("task-input")
+const taskInput = document.getElementById("task-input")
 const dateInput = document.getElementById("date-input")
 const noteTextArea = document.getElementById("note-textarea")
 const priorityInput = document.getElementById("select-input")
-
+const timeFromInput = document.getElementById("time-from-input")
+const timeEndInput = document.getElementById("time-end-input")
 
 //displays
 const displayCurrentMonthYear = document.getElementById("display-current-mont-year")
@@ -149,7 +150,6 @@ function initializingButtons () {
   closeAddEventModalBtn.addEventListener('click', closeAddEventModal)
 
   saveEventBtn.addEventListener('click', saveEventToLocalStorage)
-
 }
 
 function openAddEventModal(){
@@ -159,17 +159,18 @@ function openAddEventModal(){
 }
 
 function closeAddEventModal(){
-  eventInput.value = ''
+  taskInput.value = ''
   dateInput.value = ''
   modalsOverlayBg.style.display = "none"
   noteTextArea.value = ''
 }
 
  class Task {
-  constructor(task, priority, note, timeFrom, timeTo ){
+  constructor(task, priority, note, timeFrom, timeTo, taskColor){
     this.task = task;
     this.priority = priority;
     this.note = note;
+    this.taskColor = taskColor;
     this.timeFrom = timeFrom;
     this.timeTo = timeTo;
   }
@@ -218,12 +219,12 @@ function renderSelectedDay() {
 
 function saveEventToLocalStorage(){
   
-  if(dateInput.value == '' || eventInput.value == ''){
+  if(dateInput.value == '' || taskInput.value == ''){
     console.log("nothing happens")
   } else {
     
     let selectedDayString = formatDateToYYYYMMDD(selectedDay)
-    let task = new Task(eventInput.value,priorityInput.value,noteTextArea.value, 1215, 1315)
+    let task = new Task(taskInput.value,priorityInput.value,noteTextArea.value, timeFromInput.value, timeEndInput.value, "red")
     addTaskToDate(selectedDayString,task)
 
   }

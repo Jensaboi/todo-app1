@@ -137,7 +137,7 @@ img{
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 1.5em;
+  gap: 2em;
 }
 
 .close-btn-container{
@@ -164,11 +164,10 @@ img{
 }
 
 .add-modal-content > div > p{
-  font-family: 'Roboto', sans-serif;
   color: var(--gray-300);
   font-size: 0.9rem;
   font-weight: 400;
-  margin-bottom: 0.3em;
+  margin: 0.3em 0;
 }
 
 .add-modal-content > div > input{
@@ -180,19 +179,19 @@ img{
   color: var(--white);
   font-size: 1rem;
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 #priority-container{
   display: flex;
   justify-content: flex-start;
-  align-items: start;
+  align-items: center;
   gap: 1em;
 }
 
 .priority-select{
   border-radius: 0.2em;
-  border: none;
+  border: 1px solid var(--white);
   color: var(--white);
   background-color: transparent;
 }
@@ -210,13 +209,43 @@ img{
   color: var(--white);
   font-size: 1rem;
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 400;
 }
-
-.color-input-container{
+.time-container{
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.time-text{
+  color: var(--gray-300);
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin: 0.3em 0;
+}
+
+/* .time-container > input {
+ 
+} */
+
+.color-input-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.note-textarea{
+  padding: 5px 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--gray-300);
+  width: 100%;
+  color: var(--white);
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 400;
+  height: max-content;
+  resize: none;
 }
 
 .save-btn{
@@ -362,15 +391,15 @@ img{
 }
 /* PRIORITY COLORS */
 
-.high{
+.High{
   background-color: var(--high-prio);
 }
 
-.mid{
+.Mid{
   background-color: var(--mid-prio);
 }
 
-.low{
+.Low{
   background-color: var(--low-prio);
 }
 
@@ -410,8 +439,8 @@ img{
 }
 .task-priority{
   display: inline-block;
-  padding: 0.2em 0.3em;
-  border-radius: 0.5em;
+  padding: 0.2em 0.5em;
+  border-radius: 0.8em;
   text-align: center;
   font-size: 0.7rem;
   font-weight: 700;
