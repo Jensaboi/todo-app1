@@ -15,8 +15,9 @@ html{
   background-position: bottom;
   background-size: 50%;
   background-size: cover;
-  min-width: 100%;
-  height: 100%;
+  min-width: 500px;
+  height: 800px;
+  overflow: scroll;
 }
 body{ 
   margin: 0;
@@ -129,7 +130,7 @@ img{
 
 .add-modal-content{
   overflow: scroll;
-  padding: 1.5em;
+  padding: 3em 1.5em;
   width: 100%;
   height: 100%;
   background-color: var(--black);
