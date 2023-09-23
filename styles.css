@@ -62,14 +62,8 @@ img{
   --white: #d9d9d9;
   --gray-300: hsl(0, 0%, 46%);
   --gray-500: hsl(0, 0%, 15%);
-  --light-gray: #efeeeea0;
-  --dark-gray: #212529;
-  --almost-dark-gray: #313232;
-  --middle-grey: #6f6f6f;
-  --salmon: salmon;
   --current-day: #8d97ef;
   --selected: #fa7e7030;
-  --green: #35b849;
   --selceted-green: #35b84938;
   --lightblue-opacity:rgba(173, 216, 230, 0.443);
 }
@@ -419,7 +413,7 @@ img{
   display: flex;
   flex-direction: column;
   gap: 1em;
-  padding: 1em;
+  padding: 1em 2em;
 }
 .tasks-on-day{
   font-weight: 500;

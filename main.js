@@ -1,5 +1,5 @@
 let weeklyCalendarNav = 0;
-let selectedDay = null;
+let selectedDay = new Date();
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
 const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasksOnDate"))
@@ -42,13 +42,16 @@ function renderWeeklyCalendar(){
   }
 
   const currentDate = dateObj.getDate()
-  const currentWeekDayName = dateObj.getDay()
+  let currentWeekDayName = dateObj.getDay()
   const currentYear = dateObj.getFullYear()
   const currentMonth = dateObj.getMonth()
  
   displayMonth.innerHTML = `${months[currentMonth]} ${currentYear % 100}`
   
   //gets monday date of current week
+  if(currentWeekDayName === 0){
+    currentWeekDayName = 7
+  }
   const mondayDate = currentDate - currentWeekDayName + 1 // +1 för måndag
 
   weeklyCalendar.innerHTML = ''
