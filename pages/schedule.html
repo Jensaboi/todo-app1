@@ -23,7 +23,7 @@
         </li>
       
         <li class="nav-li">
-          <a href="../pages/schedule.html"><img src="../assets/icons/calendar-stroke.svg" alt=""></a>
+          <a href="../pages/schedule.html"><img src="../assets/icons/calendar.svg" alt=""></a>
         </li>
 
       </ul>   
@@ -41,8 +41,26 @@
           </div>
           
           <div>
-            <p class="modal-text">Task</h3>
+            <p class="modal-text">Task Title</h3>
             <input class="task-title" id="task-input" type="text">
+          </div>
+
+          <div>
+            <p class="modal-text">Date</p>
+            <input class="date-input" type="date" id="date-input">
+          </div>
+
+          <div>
+            <div class="time-container">
+              <div>
+                <p class="time-text">Start time</p>
+                <input class="time-input" type="time" id="time-from-input">
+              </div>
+              <div>
+                <p class="time-text">End time</p>
+                <input class="time-input" type="time" id="time-end-input">
+              </div> 
+            </div>
           </div>
 
           <div id="priority-container">
@@ -55,27 +73,8 @@
           </div>
 
           <div>
-            <p class="modal-text">Date</p>
-            <input class="date-input" type="date" id="date-input">
-          </div>
-
-          <div>
-            <p class="modal-text">time</p>
-            <div class="time-container">
-              <div>
-                <p class="time-text">start</p>
-                <input type="time" id="time-from-input">
-              </div>
-              <div>
-                <p class="time-text">end</p>
-                <input type="time" id="time-end-input">
-              </div> 
-            </div>
-          </div>
-
-          <div>
-            <p class="modal-text">Note</p>
-            <textarea class="note-textarea" id="note-textarea"></textarea>
+            <p class="modal-text">Description</p>
+            <textarea class="note-textarea" id="description-textarea"></textarea>
           </div>
 
           <div>

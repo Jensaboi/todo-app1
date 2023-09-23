@@ -17,7 +17,7 @@ const saveEventBtn = document.getElementById("save-event-btn")
 const closeAddEventModalBtn = document.getElementById("close-event-modal-btn")
 const taskInput = document.getElementById("task-input")
 const dateInput = document.getElementById("date-input")
-const noteTextArea = document.getElementById("note-textarea")
+const descriptionInput = document.getElementById("description-textarea")
 const priorityInput = document.getElementById("select-input")
 const timeFromInput = document.getElementById("time-from-input")
 const timeEndInput = document.getElementById("time-end-input")
@@ -162,14 +162,14 @@ function closeAddEventModal(){
   taskInput.value = ''
   dateInput.value = ''
   modalsOverlayBg.style.display = "none"
-  noteTextArea.value = ''
+  descriptionInput.value = ''
 }
 
  class Task {
-  constructor(task, priority, note, timeFrom, timeTo, taskColor){
+  constructor(task, priority, description, taskColor, timeFrom, timeTo){
     this.task = task;
     this.priority = priority;
-    this.note = note;
+    this.description = description;
     this.taskColor = taskColor;
     this.timeFrom = timeFrom;
     this.timeTo = timeTo;
@@ -197,19 +197,23 @@ function renderSelectedDay() {
       eventListItem.className = 'event-li'
       eventListItem.innerHTML = 
       `
-      <div class="task-priority ${taskObj.priority}">
-        <p>${taskObj.priority}</p>
+      <div class="task-prio-time-container">
+        <p class="task-priority ${taskObj.priority}">${taskObj.priority}</p>
+        <div class="task-time-container">
+          <p>${taskObj.timeFrom}</p>
+          <p>${taskObj.timeTo}</p>
+        </div>
       </div>
       <p class="task-p">${taskObj.task}</p>
       `
   
       //Check if there's a note and add it to the list item
-      if (taskObj.note) {
-        const noteParagraph = document.createElement('p');
-        noteParagraph.className = 'note-p'
-        noteParagraph.textContent = ` - ${taskObj.note}`;
+      if (taskObj.description) {
+        const descriptionP = document.createElement('p');
+        descriptionP.className = 'note-p'
+        descriptionP.textContent = ` - ${taskObj.description}`;
           
-        eventListItem.appendChild(noteParagraph);
+        eventListItem.appendChild(descriptionP);
       }
     document.querySelector('#event-list').appendChild(eventListItem)
     }
@@ -220,12 +224,10 @@ function saveEventToLocalStorage(){
   
   if(dateInput.value == '' || taskInput.value == ''){
     console.log("nothing happens")
-  } else {
-    
+  } else { 
     let selectedDayString = formatDateToYYYYMMDD(selectedDay)
-    let task = new Task(taskInput.value,priorityInput.value,noteTextArea.value, timeFromInput.value, timeEndInput.value, "red")
+    let task = new Task(taskInput.value, priorityInput.value, descriptionInput.value, "red", timeFromInput.value, timeEndInput.value)
     addTaskToDate(selectedDayString,task)
-
   }
 
   localStorage.setItem("tasksOnDate", JSON.stringify(tasksOnDate))

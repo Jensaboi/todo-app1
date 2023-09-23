@@ -16,7 +16,7 @@ html{
   background-size: 50%;
   background-size: cover;
   min-width: 500px;
-  height: 800px;
+  height: 800px; 
   overflow: scroll;
 }
 body{ 
@@ -50,10 +50,11 @@ img{
 
 /* === VARIABLES  === */
 
+/* GENERAL COLORS */
 :root{
   --high-prio: hsla(0, 96%, 39%, 0.617);
   --mid-prio: hsl(33, 100%, 50%);
-  --low-prio: hsl(194, 39%, 49%);
+  --low-prio: hsl(138, 39%, 49%);
   --black: #121112;
   --white: #d9d9d9;
   --gray-300: hsl(0, 0%, 46%);
@@ -70,10 +71,19 @@ img{
   --lightblue-opacity:rgba(173, 216, 230, 0.443);
 }
 
-/* === FONTS SIZE/COLORS === */
+/* PRIORITY COLORS */
 
+.High{
+  background-color: var(--high-prio);
+}
 
+.Mid{
+  background-color: var(--mid-prio);
+}
 
+.Low{
+  background-color: var(--low-prio);
+}
 
 /* === BASE STYLES === */
 
@@ -113,6 +123,7 @@ img{
   background-color: transparent;
   width: 2.7em;
   text-align: center;
+  cursor: pointer;
 }
 
 /* MODALS */ 
@@ -154,6 +165,7 @@ img{
   border: none;
   font-weight: 500;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .create-new-task-text{
@@ -216,6 +228,7 @@ img{
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  gap: 3em;
 }
 
 .time-text{
@@ -225,9 +238,12 @@ img{
   margin: 0.3em 0;
 }
 
-/* .time-container > input {
- 
-} */
+.time-input{
+  background-color: transparent;
+  border: none;
+  color: var(--white);
+  font-size: 1rem;
+}
 
 .color-input-container{
   display: flex;
@@ -250,13 +266,14 @@ img{
 }
 
 .save-btn{
-  width: 100%;
-  padding: 1em 0;
+  padding: 1em 3em;
   font-size: 1rem;
   font-weight: 700;
-  background-color: aquamarine;
+  background-color: rgb(26, 159, 145);
   border: none;
   border-radius: 0.5em;
+  color: var(--white);
+  align-self: center;
 }
 
 /* Search INPUT*/
@@ -286,6 +303,7 @@ img{
   border-radius: 50%;
   border: 3px solid var(--gray-300);
   background-color: transparent;
+  cursor: pointer;
 }
 
 .toggle-month-container{
@@ -304,6 +322,7 @@ img{
 .arrow-btn{
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .weekly-calendar-buttons{
@@ -324,7 +343,7 @@ img{
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 1rem;
-  
+  cursor: pointer;
 }
 .weekly-calendar{
   width: 100%;
@@ -387,21 +406,8 @@ img{
 .task-circle{
   width: 5px;
   height: 5px;
-  background-color: var(--lightblue);
+  /* background-color: var(--lightblue); */
   border-radius: 50%;
-}
-/* PRIORITY COLORS */
-
-.High{
-  background-color: var(--high-prio);
-}
-
-.Mid{
-  background-color: var(--mid-prio);
-}
-
-.Low{
-  background-color: var(--low-prio);
 }
 
 /* DAILY TASKS */
@@ -440,12 +446,29 @@ img{
 }
 .task-priority{
   display: inline-block;
-  padding: 0.2em 0.5em;
+  padding: 0.2em 0.4em;
   border-radius: 0.8em;
-  text-align: center;
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--white);
+}
+.task-prio-time-container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5em;
+}
+.task-time-container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
+.task-time-container > p {
+  color: var(--gray-300);
+  font-size: 0.8rem;
+  font-weight: 600;
+
 }
 .task-p{
   margin-top: 1em;

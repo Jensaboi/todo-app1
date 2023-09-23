@@ -23,7 +23,7 @@
         </li>
 
         <li class="nav-li">
-          <a href="../pages/schedule.html"><img src="../assets/icons/calendar.svg" alt=""></a>
+          <a href="../pages/schedule.html"><img src="../assets/icons/calendar-stroke.svg" alt=""></a>
         </li>
 
       </ul>
@@ -32,4 +32,74 @@
   </header>
   
   <main>
+    <div id="modals-overlay-bg" class="modals-overlay-bg">
+      
+      <div class="add-modal-content">
+          <div class="close-btn-container">
+            <button id="close-event-modal-btn" class="close-modal-btn">&#x2715;</button>
+            <h3 class="create-new-task-text">Create New Task</h3>
+          </div>
+          
+          <div>
+            <p class="modal-text">Task Title</h3>
+            <input class="task-title" id="task-input" type="text">
+          </div>
+
+          <div>
+            <p class="modal-text">Date</p>
+            <input class="date-input" type="date" id="date-input">
+          </div>
+
+          <div>
+            <div class="time-container">
+              <div>
+                <p class="time-text">Start time</p>
+                <input class="time-input" type="time" id="time-from-input">
+              </div>
+              <div>
+                <p class="time-text">End time</p>
+                <input class="time-input" type="time" id="time-end-input">
+              </div> 
+            </div>
+          </div>
+
+          <div id="priority-container">
+            <p>Priority</p>
+            <select class="priority-select" name="" id="select-input">
+              <option id="low-prio" value="Low">Low</option>
+              <option id="mid-prio" value="Mid">Mid</option>
+              <option id="high-prio" value="High">High</option>
+            </select>
+          </div>
+
+          <div>
+            <p class="modal-text">Description</p>
+            <textarea class="note-textarea" id="description-textarea"></textarea>
+          </div>
+
+          <div>
+            <p>Pick Task Color</p>
+            <div class="color-input-container">
+              <input name="color" value="red" type="radio">
+              <input name="color" value="green" type="radio">
+              <input name="color" value="blue" type="radio">
+              <input name="color" value="pink" type="radio">
+              <input name="color" value="purple" type="radio">
+              <input name="color" value="lightblue" type="radio">
+              <input name="color" value="orange" type="radio">
+              <input name="color" value="violet" type="radio">
+            </div>
+          </div>
+          <button id="save-event-btn" class="save-btn">Create Task</button>
+        </div>
+    </div>
+
+    <section>
+
+    </section>
+    
+    <section>
+      
+    </section>
+
   </main>
