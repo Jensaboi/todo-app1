@@ -50,9 +50,9 @@ img{
 /* === VARIABLES  === */
 
 :root{
-  --high-prio: hsla(0, 36%, 44%, 0.617);
-  --mid-prio: hsla(39, 100%, 51%, 0.571);
-  --low-prio: hsla(194, 43%, 75%, 0.724);
+  --high-prio: hsla(0, 96%, 39%, 0.617);
+  --mid-prio: hsl(33, 100%, 50%);
+  --low-prio: hsl(194, 39%, 49%);
   --black: #121112;
   --white: #d9d9d9;
   --gray-300: hsl(0, 0%, 46%);
@@ -430,7 +430,7 @@ img{
 }
 .event-li{
   background-color: var(--gray-500);
-  padding: 0.4em;
+  padding: 1em;
   border-radius: 0.5em;
   display: flex;
   flex-direction: column;

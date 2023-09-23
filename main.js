@@ -191,7 +191,6 @@ function renderSelectedDay() {
   
   if(selectedDayString in tasksOnDate){
     const tasksForSelectedDate = tasksOnDate[selectedDayString]
-    console.log(tasksOnDate[selectedDayString])
 
     for(const taskObj of tasksForSelectedDate){
       const eventListItem = document.createElement('li')
