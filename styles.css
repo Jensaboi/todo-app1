@@ -59,12 +59,12 @@ img{
   --mid-prio: hsl(57, 100%, 50%);
   --low-prio: hsla(138, 100%, 50%, 0.53);
   --white: #eaeaea;
-  --black: #0c0c10;
-  --gray-300: #747288;
-  --gray-400: #6f6d7e;
-  --gray-500: #4a4a54;
-  --gray-600: #504e58;
-  --gray-700: #201f24;
+  --gray-300: #9999a2;
+  --gray-400: #838b93;
+  --gray-500: #6d6d75;
+  --gray-600: #5e5c65;
+  --gray-700: #36353b;
+  --black: #242427;
   --current-day: hsla(158, 94%, 50%, 0.792);
 }
 
@@ -174,7 +174,7 @@ img{
 }
 
 .add-modal-content > div > p{
-  color: var(--gray-300);
+  color: var(--gray-500);
   font-size: 0.9rem;
   font-weight: 400;
   margin: 0.3em 0;
@@ -252,7 +252,7 @@ img{
   padding: 5px 0;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid var(--gray-300);
+  border-bottom: 1px solid var(--gray-700);
   width: 100%;
   color: var(--white);
   font-size: 1rem;
@@ -269,7 +269,7 @@ img{
   background-color: var(--current-day);
   border: none;
   border-radius: 0.5em;
-  color: var(--white);
+  color: var(--black);
   align-self: center;
 }
 
@@ -311,7 +311,7 @@ img{
 
 .display-month{
   color: var(--white);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 500;
   margin: 0;
 }
@@ -338,7 +338,7 @@ img{
   
 
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 1rem;
   cursor: pointer;
 }
@@ -368,7 +368,7 @@ img{
   justify-content: center;
   align-items: center;
   color: var(--white);
-  font-weight: 700;
+  font-weight: 400;
   width: 48px;
   height: 48px;
   background-color: var(--gray-700);
@@ -387,7 +387,7 @@ img{
 
 .week-day-name{
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--gray-300);
 }
 
@@ -415,11 +415,11 @@ img{
   padding: 1em 2em;
 }
 .tasks-on-day{
-  font-weight: 500;
+  font-weight: 400;
 }
 .display-selected-day{
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 300;
   color: var(--current-day);
 }
 .event-list{
@@ -448,7 +448,7 @@ img{
   padding: 0.2em 0.4em;
   border-radius: 0.8em;
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--white);
 }
 
@@ -467,19 +467,22 @@ img{
 }
 
 .task-time-container > p {
-  color: var(--gray-300);
+  color: var(--gray-400);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .task-p{
   margin-top: 1em;
   color: var(--white);
+  font-weight: 400;
+  font-size: 1.1rem;
 }
 .note-p{
   color: var(--gray-400);
   margin-top: 0.2em;
   font-size: 0.9rem;
+  font-weight: 300;
 }
 
 /* === MEDIA QUERIES === */
