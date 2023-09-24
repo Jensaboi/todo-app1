@@ -213,11 +213,12 @@ function renderSelectedDay() {
       //Check if there's a note and add it to the list item
       if (taskObj.description) {
         const descriptionP = document.createElement('p');
-        descriptionP.className = 'note-p'
+        descriptionP.className = 'description-p'
         descriptionP.textContent = ` - ${taskObj.description}`;
           
         eventListItem.appendChild(descriptionP);
       }
+
     document.querySelector('#event-list').appendChild(eventListItem)
     }
   }

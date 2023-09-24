@@ -447,7 +447,7 @@ img{
 .event-li{
   background-color: var(--gray-700);
   padding: 1em;
-  border: 1px solid var(--gray-400);
+  border: 2px solid var(--gray-400);
   border-radius: 0.5em;
   display: flex;
   flex-direction: column;
@@ -491,7 +491,7 @@ img{
   font-weight: 400;
   font-size: 1.1rem;
 }
-.note-p{
+.description-p{
   color: var(--gray-400);
   margin-top: 0.2em;
   font-size: 0.9rem;
