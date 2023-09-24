@@ -57,7 +57,7 @@ img{
 :root{
   --high-prio: hsla(0, 100%, 49%, 0.532);
   --mid-prio: hsl(57, 100%, 50%);
-  --low-prio: hsla(138, 100%, 50%, 0.53);
+  --low-prio: hsla(136, 100%, 50%, 0.53);
   --white: #eaeaea;
   --gray-300: #9999a2;
   --gray-400: #838b93;
@@ -381,8 +381,19 @@ img{
 }
 
 .selected-day{
-  /* background-color: var(--selected);  */
-  border: 2px solid var(--current-day);
+  position: relative; 
+}
+
+.selected-day::before{
+  border-radius: 100%;
+  content: '';
+  background-image: linear-gradient(to bottom right, var(--current-day) 0%, #3ad5cb 100%);
+  top: -2px;
+  left: -2px;
+  bottom: -2px;
+  right: -2px;
+  position: absolute;
+  z-index:-1;
 }
 
 .week-day-name{
@@ -430,17 +441,19 @@ img{
   flex-direction: column;
   justify-content: start;
   align-items: stretch;
-  gap: 0.5em;
+  gap: 1em;
 
 }
 .event-li{
   background-color: var(--gray-700);
   padding: 1em;
+  border: 1px solid var(--gray-400);
   border-radius: 0.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  position: relative;
 }
 
 .task-priority{
@@ -456,7 +469,7 @@ img{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1.5em;
+  gap: 1em;
 }
 
 .task-time-container{
