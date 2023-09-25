@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="body-home">
   <header>
     <nav class="main-nav">
       <ul class="nav-bar-ul">
@@ -32,6 +32,7 @@
   </header>
   
   <main>
+    
     <div id="modals-overlay-bg" class="modals-overlay-bg">
       
       <div class="add-modal-content">
@@ -66,9 +67,9 @@
           <div id="priority-container">
             <p>Priority</p>
             <select class="priority-select" name="" id="select-input">
-              <option id="low-prio" value="Low">Low</option>
-              <option id="mid-prio" value="Mid">Mid</option>
-              <option id="high-prio" value="High">High</option>
+              <option class="low-option" id="low-prio" value="Low">Low</option>
+              <option class="mid-option" id="mid-prio" value="Mid">Mid</option>
+              <option class="high-option" id="high-prio" value="High">High</option>
             </select>
           </div>
 
@@ -93,13 +94,37 @@
           <button id="save-event-btn" class="save-btn">Create Task</button>
         </div>
     </div>
-
-    <section>
-      
-    </section>
     
     <section>
       
+    </section>
+
+    <section class="sorted-task-section">
+      
+      <div class="on-going-container">
+        <h3>On going</h3>
+
+        <label>
+          <select class="sorting-selcet" name="sorting-selcet" id="sorting-selcet">
+            <option value="due-date">Due Date</option>
+            <option value="prio">Priority</option>
+          </select>
+        </label>
+      </div>
+
+      <ol class="task-list">
+        <li class="task-li">
+          <div class="task-prio-time-container">
+            <p class="task-priority High">High</p>
+            <div class="task-time-container">
+              <p>10:00</p>
+              <p>11:00</p>
+            </div>
+          </div>
+          <h3 class="task-name">Jogga blabla</h3>
+          <p>due date: 2023-09-25</p>
+        </li>
+      </ol>
     </section>
 
   </main>

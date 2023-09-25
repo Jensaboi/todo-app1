@@ -18,7 +18,7 @@ const closeAddEventModalBtn = document.getElementById("close-event-modal-btn")
 const taskInput = document.getElementById("task-input")
 const dateInput = document.getElementById("date-input")
 const descriptionInput = document.getElementById("description-textarea")
-const priorityInput = document.getElementById("select-input")
+const priorityInput = document.getElementById("priority-input")
 const timeFromInput = document.getElementById("time-from-input")
 const timeEndInput = document.getElementById("time-end-input")
 
@@ -29,7 +29,7 @@ const displayMonth = document.getElementById("display-month")
 //Display selected day
 const displaySelectedDay = document.getElementById("display-selected-day")
 const dailyTasks = document.getElementById("daily-tasks-container")
-const eventList = document.getElementById('event-list')
+const taskList = document.getElementById('task-list')
 
 
 
@@ -190,15 +190,15 @@ function renderSelectedDay() {
   const selectedDayString = formatDateToYYYYMMDD(selectedDay)
 
   displaySelectedDay.innerHTML = `${selectedDayString}`
-  eventList.innerHTML = ''
+  taskList.innerHTML = ''
   
   if(selectedDayString in tasksOnDate){
     const tasksForSelectedDate = tasksOnDate[selectedDayString]
 
     for(const taskObj of tasksForSelectedDate){
-      const eventListItem = document.createElement('li')
-      eventListItem.className = 'event-li'
-      eventListItem.innerHTML = 
+      const taskListItem = document.createElement('li')
+      taskListItem.className = 'task-li'
+      taskListItem.innerHTML = 
       `
       <div class="task-prio-time-container">
         <p class="task-priority ${taskObj.priority}">${taskObj.priority}</p>
@@ -207,7 +207,7 @@ function renderSelectedDay() {
           <p>${taskObj.timeTo}</p>
         </div>
       </div>
-      <p class="task-p">${taskObj.task}</p>
+      <h3 class="task-name">${taskObj.task}</h3>
       `
   
       //Check if there's a note and add it to the list item
@@ -216,10 +216,10 @@ function renderSelectedDay() {
         descriptionP.className = 'description-p'
         descriptionP.textContent = ` - ${taskObj.description}`;
           
-        eventListItem.appendChild(descriptionP);
+        taskListItem.appendChild(descriptionP);
       }
 
-    document.querySelector('#event-list').appendChild(eventListItem)
+    document.querySelector('#task-list').appendChild(taskListItem)
     }
   }
  }
