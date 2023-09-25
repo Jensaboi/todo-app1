@@ -136,25 +136,6 @@ function formatDateToYYYYMMDD(date) {
   return dateFormatter.format(date);
 }
 
-function initializingButtons () {
-
-  weeklyBackBtnEle.addEventListener('click',() => {
-    weeklyCalendarNav -= 7;
-    renderWeeklyCalendar()
-  })
-
-  weeklyNextBtnEle.addEventListener('click',() => {
-    weeklyCalendarNav += 7;
-    renderWeeklyCalendar()
-  })
-
-  document.getElementById("open-event-modal-btn").addEventListener('click', openAddEventModal)
-
-  closeAddEventModalBtn.addEventListener('click', closeAddEventModal)
-
-  saveEventBtn.addEventListener('click', saveEventToLocalStorage)
-}
-
 function openAddEventModal(){
   modalsOverlayBg.style.display = "block"
   dateInput.value = formatDateToYYYYMMDD(selectedDay)
@@ -179,13 +160,6 @@ function closeAddEventModal(){
   }
 }
 
-function addTaskToDate(date,task){
-  if(!tasksOnDate[date]){
-    tasksOnDate[date] = []
-  }
-  tasksOnDate[date].push(task)
-}
-
 function renderSelectedDay() {
   const selectedDayString = formatDateToYYYYMMDD(selectedDay)
 
@@ -200,45 +174,86 @@ function renderSelectedDay() {
       taskListItem.className = 'task-li'
       taskListItem.innerHTML = 
       `
-      <div class="task-prio-time-container">
-        <p class="task-priority ${taskObj.priority}">${taskObj.priority}</p>
-        <div class="task-time-container">
+      <div class="card-top-section">
+        <p class="task-priority ${taskObj.priority}">${taskObj.priority}</p>   
+        <div class="time-container">
           <p>${taskObj.timeFrom}</p>
           <p>${taskObj.timeTo}</p>
         </div>
       </div>
       <h3 class="task-name">${taskObj.task}</h3>
       `
-  
-      //Check if there's a note and add it to the list item
+
+      //Check if there's a description and add it to the list item
       if (taskObj.description) {
         const descriptionP = document.createElement('p');
         descriptionP.className = 'description-p'
-        descriptionP.textContent = ` - ${taskObj.description}`;
+        descriptionP.textContent = `${taskObj.description}`;
           
         taskListItem.appendChild(descriptionP);
       }
+      const deleteBtn = document.createElement('button')
+      deleteBtn.className = "delete-btn"
+      deleteBtn.innerHTML = `&#x2715;`
+      deleteBtn.addEventListener('click', () =>{
+        
+        // Remove the task from tasksForSelectedDate
+        const taskIndex = tasksForSelectedDate.findIndex(item => item.task === taskObj.task);
+        if (taskIndex !== -1) {
+          tasksForSelectedDate.splice(taskIndex, 1);
+          localStorage.setItem("tasksOnDate", JSON.stringify(tasksOnDate))
+          
+          renderSelectedDay();  // Re-render selected day
+          renderWeeklyCalendar() // Re-render weekly calendar
+        }
 
-    document.querySelector('#task-list').appendChild(taskListItem)
+      })
+      taskListItem.appendChild(deleteBtn) 
+      document.querySelector('#task-list').appendChild(taskListItem)
     }
   }
  }
 
-function saveEventToLocalStorage(){
-  
-  if(dateInput.value == '' || taskInput.value == ''){
-    console.log("nothing happens")
-  } else { 
-    let selectedDayString = formatDateToYYYYMMDD(selectedDay)
-    let task = new Task(taskInput.value, priorityInput.value, descriptionInput.value, "red", timeFromInput.value, timeEndInput.value)
-    addTaskToDate(selectedDayString,task)
+ function addTaskToDate(date,task){
+  if(!tasksOnDate[date]){
+    tasksOnDate[date] = []
   }
+  tasksOnDate[date].push(task)
+}
 
-  localStorage.setItem("tasksOnDate", JSON.stringify(tasksOnDate))
+function saveEventToLocalStorage(){
+  let selectedDayString = formatDateToYYYYMMDD(selectedDay)
+  let task = new Task(taskInput.value, priorityInput.value, descriptionInput.value, "red", timeFromInput.value, timeEndInput.value)
+  
+  if(dateInput.value && taskInput.value){
+    addTaskToDate(selectedDayString,task)
+    localStorage.setItem("tasksOnDate", JSON.stringify(tasksOnDate))
+  } else { 
+    console.log("nothing happens")
+  }
   
   renderSelectedDay()
   renderWeeklyCalendar()
   closeAddEventModal()
+}
+
+function initializingButtons () {
+
+  weeklyBackBtnEle.addEventListener('click',() => {
+    weeklyCalendarNav -= 7;
+    renderWeeklyCalendar()
+  })
+
+  weeklyNextBtnEle.addEventListener('click',() => {
+    weeklyCalendarNav += 7;
+    renderWeeklyCalendar()
+  })
+
+  document.getElementById("open-event-modal-btn").addEventListener('click', openAddEventModal)
+
+  closeAddEventModalBtn.addEventListener('click', closeAddEventModal)
+
+  saveEventBtn.addEventListener('click', saveEventToLocalStorage)
 }
 
 

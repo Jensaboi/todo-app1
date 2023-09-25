@@ -66,6 +66,7 @@ img{
   --gray-700: #36353b;
   --black: #242427;
   --current-day: hsla(158, 94%, 50%, 0.792);
+
 }
 
 /* PRIORITY COLORS */
@@ -199,17 +200,27 @@ img{
   gap: 1em;
 }
 
-.priority-select{
+.select-bar{
+  background-color: var(--black);
   font-size: 0.8rem;
   padding: 0.1em;
-  border-radius: 0.2em;
+  border-radius: 0.3em;
   border: 1px solid var(--gray-500);
   color: var(--white);
-  background-color: transparent;
+}
+
+.select-bar:hover{
+  cursor: pointer;
 }
 
 .low-option{
   color: var(--low-prio);
+}
+.mid-option{
+  color: var(--mid-prio);
+}
+.high-option{
+  color: var(--high-prio);
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -277,6 +288,11 @@ img{
   border-radius: 0.5em;
   color: var(--black);
   align-self: center;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.save-btn:hover{
+  background-color: hsl(145, 100%, 50%);
 }
 
 /* Search INPUT*/
@@ -420,7 +436,6 @@ img{
 .task-circle{
   width: 5px;
   height: 5px;
-  /* background-color: var(--lightblue); */
   border-radius: 50%;
 }
 
@@ -451,15 +466,16 @@ img{
 
 }
 .task-li{
-  background-color: var(--gray-700);
+  position: relative;
   padding: 1em;
+  background-color: var(--gray-700);
   border: 2px solid var(--gray-400);
   border-radius: 0.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  position: relative;
+  gap: 0.3em;
 }
 
 .task-priority{
@@ -468,31 +484,30 @@ img{
   border-radius: 0.8em;
   font-size: 0.7rem;
   font-weight: 400;
-  color: var(--white);
+  color: var(--white); 
 }
 
-.task-prio-time-container{
+.card-top-section{
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 1em;
 }
 
-.task-time-container{
+.time-container{
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
 }
 
-.task-time-container > p {
+.time-container > p {
   color: var(--gray-400);
   font-size: 0.8rem;
   font-weight: 400;
 }
 
 .task-name{
-  margin-top: 1em;
   color: var(--white);
   font-weight: 400;
   font-size: 1.1rem;
@@ -533,4 +548,23 @@ img{
   border: 1px solid var(--gray-500);
 }
 
+.due-date{
+  font-size: 0.9rem;
+  color: var(--gray-500);
+}
+.delete-btn{
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background-color: transparent;
+  border: none;
+  color: rgb(152, 32, 32);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.delete-btn:hover{
+  color: rgb(238, 9, 9);
+}
 /* === MEDIA QUERIES === */
