@@ -96,7 +96,7 @@ img{
 .main-nav{
   width: 90%;
   background-color: var(--gray-700);
-  padding: 1.2em 1.8em;
+  padding: 0.3em 1.8em;
   border-radius: 0.5em;
   position: fixed;
   left: 5%;
@@ -113,7 +113,8 @@ img{
 .open-event-modal-btn{
   border: none;
   background-color: transparent;
-  width: 2.7em;
+  width: 60px;
+  height: 60px;
   text-align: center;
   cursor: pointer;
 }
