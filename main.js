@@ -4,7 +4,6 @@ const months = ["January","February","March","April","May","June","July","August
 
 const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasksOnDate"))
 let tasksOnDate = (tasksFromLocalStorage) ? tasksFromLocalStorage : {};
-console.log(tasksOnDate)
 
 //weekly calendar
 const weeklyCalendar = document.getElementById("weekly-calendar")
@@ -73,12 +72,8 @@ function renderWeeklyCalendar(){
       
       selectedDay = new Date(currentYear, currentMonth, mondayDate + i)
       renderSelectedDay(selectedDay)
-      
-      //removes selected day from each element on click
-      document.querySelectorAll('.date-circle').forEach(element => {
-        element.classList.remove('selected-day');
-      });
-      
+    
+      removeSelectedDay()
       //adds selected day class on click
       weeklyDayEl.querySelector('.date-circle').classList.add('selected-day') 
     })
@@ -113,6 +108,13 @@ function renderWeeklyCalendar(){
     }
     document.querySelector('#weekly-calendar').appendChild(weeklyDayEl);
   }
+}
+
+//removes selected day from each element on click
+function removeSelectedDay(){
+  document.querySelectorAll('.date-circle').forEach(element => {
+  element.classList.remove('selected-day');
+  });
 }
 
 //Gets weekday name
@@ -162,13 +164,13 @@ function closeAddEventModal(){
 }
 
 function renderSelectedDay() {
-  const selectedDayString = formatDateToYYYYMMDD(selectedDay)
+  const yyyymmddFormat = formatDateToYYYYMMDD(selectedDay)
 
-  displaySelectedDay.innerHTML = `${selectedDayString}`
+  displaySelectedDay.innerHTML = `${yyyymmddFormat}`
   taskList.innerHTML = ''
   
-  if(selectedDayString in tasksOnDate){
-    const tasksForSelectedDate = tasksOnDate[selectedDayString]
+  if(yyyymmddFormat in tasksOnDate){
+    const tasksForSelectedDate = tasksOnDate[yyyymmddFormat]
 
     for(const taskObj of tasksForSelectedDate){
       const taskListItem = document.createElement('li')
@@ -227,7 +229,7 @@ function saveEventToLocalStorage(){
   let task = new Task(taskInput.value, priorityInput.value, descriptionInput.value, "red", timeFromInput.value, timeEndInput.value, false)
   
   if(dateInput.value && taskInput.value){
-    addTaskToDate(selectedDayString,task)
+    addTaskToDate(dateInput.value,task)
     localStorage.setItem("tasksOnDate", JSON.stringify(tasksOnDate))
   } else { 
     console.log("nothing happens")

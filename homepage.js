@@ -5,6 +5,7 @@ const today = new Date()
 
 
 const sortedTaskList = document.getElementById("sorted-task-list")
+
 function sortByDueDate() {
   
   for(const keys in tasksOnDate){
@@ -21,7 +22,7 @@ function renderSortedTaskList(){
     let taskDate = new Date(task.date)
     let todayNoHours = today.setHours(0, 0, 0, 0);
     
-    if(task.completed === false && taskDate > todayNoHours){
+    if(task.completed === false && taskDate >= todayNoHours){
     let taskCard = document.createElement('li')
     taskCard.className = 'task-li'
     taskCard.innerHTML =
@@ -42,6 +43,6 @@ function renderSortedTaskList(){
   }
   })
 }
+
 sortByDueDate()
-console.log(sortedTasksOnDate)
 renderSortedTaskList()
