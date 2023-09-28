@@ -150,13 +150,14 @@ function closeAddEventModal(){
 }
 
  class Task {
-  constructor(task, priority, description, taskColor, timeFrom, timeTo){
+  constructor(task, priority, description, taskColor, timeFrom, timeTo, completed){
     this.task = task;
     this.priority = priority;
     this.description = description;
     this.taskColor = taskColor;
     this.timeFrom = timeFrom;
     this.timeTo = timeTo;
+    this.completed = completed;
   }
 }
 
@@ -197,7 +198,7 @@ function renderSelectedDay() {
       deleteBtn.innerHTML = `&#x2715;`
       deleteBtn.addEventListener('click', () =>{
         
-        // Remove the task from tasksForSelectedDate
+        // Removes the task from tasksForSelectedDate
         const taskIndex = tasksForSelectedDate.findIndex(item => item.task === taskObj.task);
         if (taskIndex !== -1) {
           tasksForSelectedDate.splice(taskIndex, 1);
@@ -223,7 +224,7 @@ function renderSelectedDay() {
 
 function saveEventToLocalStorage(){
   let selectedDayString = formatDateToYYYYMMDD(selectedDay)
-  let task = new Task(taskInput.value, priorityInput.value, descriptionInput.value, "red", timeFromInput.value, timeEndInput.value)
+  let task = new Task(taskInput.value, priorityInput.value, descriptionInput.value, "red", timeFromInput.value, timeEndInput.value, false)
   
   if(dateInput.value && taskInput.value){
     addTaskToDate(selectedDayString,task)
