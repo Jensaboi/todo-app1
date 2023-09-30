@@ -134,7 +134,7 @@ function openAddModal(){
 
 }
 
-function closeAddEventModal(){
+function closeAddModal(){
   taskInput.value = ''
   dateInput.value = ''
   descriptionInput.value = ''
@@ -209,7 +209,7 @@ function renderSelectedDay(){
   }
 }
 
- function addTaskToDate(date,task){
+function addTaskToDate(date,task){
   if(!tasksOnDate[date]){
     tasksOnDate[date] = []
   }
@@ -228,7 +228,7 @@ function saveTaskBtn(){
   
   renderSelectedDay()
   renderWeeklyCalendar()
-  closeAddEventModal()
+  closeAddModal()
 }
 
 function initializingButtons () {
@@ -245,7 +245,7 @@ function initializingButtons () {
 
   document.getElementById("open-event-modal-btn").addEventListener('click', openAddModal)
 
-  document.getElementById("close-event-modal-btn").addEventListener('click', closeAddEventModal)
+  document.getElementById("close-event-modal-btn").addEventListener('click', closeAddModal)
 
   document.getElementById("save-event-btn").addEventListener('click', saveTaskBtn)
 }
