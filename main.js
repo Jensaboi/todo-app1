@@ -1,36 +1,17 @@
 let weeklyCalendarNav = 0;
 let selectedDay = new Date();
-const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
 const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasksOnDate"))
 let tasksOnDate = (tasksFromLocalStorage) ? tasksFromLocalStorage : {};
 
-//weekly calendar
-const weeklyCalendar = document.getElementById("weekly-calendar")
-const weeklyBackBtnEle = document.getElementById("weekly-back-btn")
-const weeklyNextBtnEle = document.getElementById("weekly-next-btn")
-
-//Modals
+//add task modal
 const modalsOverlayBg = document.getElementById("modals-overlay-bg")
-const saveEventBtn = document.getElementById("save-event-btn")
-const closeAddEventModalBtn = document.getElementById("close-event-modal-btn")
 const taskInput = document.getElementById("task-input")
 const dateInput = document.getElementById("date-input")
 const descriptionInput = document.getElementById("description-textarea")
 const priorityInput = document.getElementById("priority-input")
 const timeFromInput = document.getElementById("time-from-input")
 const timeEndInput = document.getElementById("time-end-input")
-
-//displays
-const displayCurrentMonthYear = document.getElementById("display-current-mont-year")
-const displayMonth = document.getElementById("display-month")
-
-//Display selected day
-const displaySelectedDay = document.getElementById("display-selected-day")
-const dailyTasks = document.getElementById("daily-tasks-container")
-const taskList = document.getElementById('task-list')
-
-
 
 function renderWeeklyCalendar(){
   const dateObj = new Date()
@@ -44,16 +25,18 @@ function renderWeeklyCalendar(){
   let currentWeekDayName = dateObj.getDay()
   const currentYear = dateObj.getFullYear()
   const currentMonth = dateObj.getMonth()
- 
-  displayMonth.innerHTML = `${months[currentMonth]} ${currentYear % 100}`
+  const displayMonth = document.getElementById("display-month")
+
+  displayMonth.innerHTML = `${getMonthYear(currentYear, currentMonth, currentDate)}`
   
   //gets monday date of current week
   if(currentWeekDayName === 0){
     currentWeekDayName = 7
   }
-  const mondayDate = currentDate - currentWeekDayName + 1 // +1 för måndag
 
+  const weeklyCalendar = document.getElementById("weekly-calendar")
   weeklyCalendar.innerHTML = ''
+  const mondayDate = currentDate - currentWeekDayName + 1 // +1 för måndag
 
   for(let i = 0; i < 7; i++){
     const weeklyDayEl = document.createElement('div')
@@ -120,15 +103,22 @@ function removeSelectedDay(){
 //Gets weekday name
 const getWeekDayName = (year,month,days) =>{
   let day = new Date(Date.UTC(year,month,days))
-  const weekDay = {weekday: 'short'}
-  return new Intl.DateTimeFormat('en-Us', weekDay).format(day)
+  const options = {weekday: 'short'}
+  return new Intl.DateTimeFormat('en-Us', options).format(day)
 }
 
 //Gets date
 const getDateNumber = (year,month,days) =>{
   let date = new Date(Date.UTC(year,month,days))
-  const weekDate = {day: 'numeric'}
-  return new Intl.DateTimeFormat('en-Us', weekDate).format(date)
+  const options = {day: 'numeric'}
+  return new Intl.DateTimeFormat('en-Us', options).format(date)
+}
+
+//Gets Month year
+const getMonthYear = (year,month,days) =>{
+  let date = new Date(Date.UTC(year,month,days))
+  const options = {month: 'long', year: '2-digit'}
+  return new Intl.DateTimeFormat('en-Us', options).format(date)
 }
 
 //Gets YYYYMMDD format
@@ -138,39 +128,28 @@ function formatDateToYYYYMMDD(date) {
   return dateFormatter.format(date);
 }
 
-function openAddEventModal(){
+function openAddModal(){
   modalsOverlayBg.style.display = "block"
   dateInput.value = formatDateToYYYYMMDD(selectedDay)
-  
+
 }
 
 function closeAddEventModal(){
   taskInput.value = ''
   dateInput.value = ''
-  modalsOverlayBg.style.display = "none"
   descriptionInput.value = ''
+  modalsOverlayBg.style.display = "none"
 }
 
- class Task {
-  constructor(task, priority, description, taskColor, timeFrom, timeTo, completed){
-    this.task = task;
-    this.priority = priority;
-    this.description = description;
-    this.taskColor = taskColor;
-    this.timeFrom = timeFrom;
-    this.timeTo = timeTo;
-    this.completed = completed;
-  }
-}
+function renderSelectedDay(){
+  const taskList = document.getElementById('task-list')
+  const displaySelectedDay = document.getElementById("display-selected-day")
 
-function renderSelectedDay() {
-  const yyyymmddFormat = formatDateToYYYYMMDD(selectedDay)
-
-  displaySelectedDay.innerHTML = `${yyyymmddFormat}`
+  displaySelectedDay.innerHTML = `${formatDateToYYYYMMDD(selectedDay)}`
   taskList.innerHTML = ''
   
-  if(yyyymmddFormat in tasksOnDate){
-    const tasksForSelectedDate = tasksOnDate[yyyymmddFormat]
+  if(formatDateToYYYYMMDD(selectedDay) in tasksOnDate){
+    const tasksForSelectedDate = tasksOnDate[formatDateToYYYYMMDD(selectedDay)]
 
     for(const taskObj of tasksForSelectedDate){
       const taskListItem = document.createElement('li')
@@ -195,6 +174,7 @@ function renderSelectedDay() {
           
         taskListItem.appendChild(descriptionP);
       }
+      
       const deleteBtn = document.createElement('button')
       deleteBtn.className = "delete-btn"
       deleteBtn.innerHTML = `&#x2715;`
@@ -217,20 +197,31 @@ function renderSelectedDay() {
   }
  }
 
+ class Task {
+  constructor(task, priority, description, taskColor, timeFrom, timeTo, completed){
+    this.task = task;
+    this.priority = priority;
+    this.description = description;
+    this.taskColor = taskColor;
+    this.timeFrom = timeFrom;
+    this.timeTo = timeTo;
+    this.completed = completed;
+  }
+}
+
  function addTaskToDate(date,task){
   if(!tasksOnDate[date]){
     tasksOnDate[date] = []
   }
   tasksOnDate[date].push(task)
+  localStorage.setItem("tasksOnDate", JSON.stringify(tasksOnDate))
 }
 
-function saveEventToLocalStorage(){
-  let selectedDayString = formatDateToYYYYMMDD(selectedDay)
+function saveTaskBtn(){
   let task = new Task(taskInput.value, priorityInput.value, descriptionInput.value, "red", timeFromInput.value, timeEndInput.value, false)
   
   if(dateInput.value && taskInput.value){
-    addTaskToDate(dateInput.value,task)
-    localStorage.setItem("tasksOnDate", JSON.stringify(tasksOnDate))
+    addTaskToDate(dateInput.value, task)
   } else { 
     console.log("nothing happens")
   }
@@ -242,21 +233,21 @@ function saveEventToLocalStorage(){
 
 function initializingButtons () {
 
-  weeklyBackBtnEle.addEventListener('click',() => {
+  document.getElementById("weekly-back-btn").addEventListener('click',() => {
     weeklyCalendarNav -= 7;
     renderWeeklyCalendar()
   })
 
-  weeklyNextBtnEle.addEventListener('click',() => {
+  document.getElementById("weekly-next-btn").addEventListener('click',() => {
     weeklyCalendarNav += 7;
     renderWeeklyCalendar()
   })
 
-  document.getElementById("open-event-modal-btn").addEventListener('click', openAddEventModal)
+  document.getElementById("open-event-modal-btn").addEventListener('click', openAddModal)
 
-  closeAddEventModalBtn.addEventListener('click', closeAddEventModal)
+  document.getElementById("close-event-modal-btn").addEventListener('click', closeAddEventModal)
 
-  saveEventBtn.addEventListener('click', saveEventToLocalStorage)
+  document.getElementById("save-event-btn").addEventListener('click', saveTaskBtn)
 }
 
 
