@@ -1,4 +1,6 @@
-const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasksOnDate"))
+import { initModalBtns } from "./services/inti.service.js"
+import {getTasks} from './services/task.service.js'
+const tasksFromLocalStorage = getTasks();
 let tasksOnDate = (tasksFromLocalStorage) ? tasksFromLocalStorage : {};
 let sortedTasksOnDate = []
 const today = new Date()
@@ -45,4 +47,5 @@ function renderSortedTaskList(){
 }
 
 sortByDueDate()
+initModalBtns()
 renderSortedTaskList()
